@@ -214,6 +214,435 @@
             
 
   
+    <article id="post-nginx常见问题处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">nginx常见问题处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-09-26T06:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、Nginx指令add-header和proxy-set-header的区别"><a href="#一、Nginx指令add-header和proxy-set-header的区别" class="headerlink" title="一、Nginx指令add_header和proxy_set_header的区别"></a>一、Nginx指令add_header和proxy_set_header的区别</h4><p>proxy_set_header和add_header的区别<br>区别：proxy_set_header是Nginx设置请求头信息给上游服务器，add_header是Nginx设置响应头信息给浏览器。</p>
+<p>如Nginx请求上游服务器时，添加额外的请求头，就需要使用proxy_set_header。在Java中使用HttpServletRequest#getHeader(String name)来获取请求头的值，name是请求头的名称。<br>例如：proxy_set_header X-Request-URI s c h e m e : &#x2F; &#x2F; scheme:&#x2F;&#x2F;scheme:&#x2F;&#x2F;host&#x2F;$uri;<br>String requestUrl &#x3D; request.getHeader(“X-Request-URI”);<br>if (requestUrl &#x3D;&#x3D; null) {<br>    &#x2F;&#x2F; 从Servlet服务器获取客户端请求地址<br>    requestUrl &#x3D; request.getRequestURL().toString();<br>}</p>
+<p>Nginx响应数据时，要告诉浏览器一些头信息，就要使用add_header。例如跨域访问（详细参见Nginx跨域访问配置）<br>add_header ‘Access-Control-Allow-Origin’ ‘*’;<br>add_header ‘Access-Control-Allow-Headers’ ‘X-Requested-With’;<br>add_header ‘Access-Control-Allow-Methods’ ‘GET,POST,OPTIONS’</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-nginx使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" target="_blank">nginx使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2023-09-26T06:08:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker常见问题处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">docker常见问题处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-09-25T08:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、内存过大处理"><a href="#一、内存过大处理" class="headerlink" title="一、内存过大处理"></a>一、内存过大处理</h4><h3 id="方案一：配置容器docker-compose-yml的max-size选项来实现"><a href="#方案一：配置容器docker-compose-yml的max-size选项来实现" class="headerlink" title="方案一：配置容器docker-compose.yml的max-size选项来实现"></a>方案一：配置容器docker-compose.yml的max-size选项来实现</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line">  <span class="attr">XXXX-server:</span></span><br><span class="line">    <span class="attr">image:</span> <span class="string">XXXX</span></span><br><span class="line">    <span class="attr">container_name:</span> <span class="string">XXX</span></span><br><span class="line">    <span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line">    <span class="attr">logging:</span></span><br><span class="line">      <span class="attr">driver:</span> <span class="string">&quot;json-file&quot;</span></span><br><span class="line">      <span class="attr">options:</span></span><br><span class="line">        <span class="attr">max-size:</span> <span class="string">&quot;5g&quot;</span></span><br></pre></td></tr></table></figure>
+<p>添加logging文件配置<br>其日志文件的大小就被限制在5GB</p>
+<h3 id="方案二：docker-全局配置"><a href="#方案二：docker-全局配置" class="headerlink" title="方案二：docker 全局配置"></a>方案二：docker 全局配置</h3><h2 id="修改docker的配置"><a href="#修改docker的配置" class="headerlink" title="修改docker的配置"></a>修改docker的配置</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">vim /etc/docker/daemon.json</span></span><br><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;log-driver&quot;:&quot;json-file&quot;,</span><br><span class="line">  &quot;log-opts&quot;: &#123;&quot;max-size&quot;:&quot;500m&quot;, &quot;max-file&quot;:&quot;3&quot;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>max-size&#x3D;500m，意味着一个容器日志大小上限是500M，<br>max-file&#x3D;3，意味着一个容器有三个日志，分别是id+.json、id+1.json、id+2.json。</p>
+<h2 id="重启docker"><a href="#重启docker" class="headerlink" title="重启docker"></a>重启docker</h2><p>&#x2F;&#x2F; 重启docker守护进程</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl daemon-reload</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">systemctl restart docker</span></span><br></pre></td></tr></table></figure>
+<p>注意：设置的日志大小，只对新建的容器有效。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-docker使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" target="_blank">docker使用</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" class="archive-article-date">
+        <time datetime="2023-09-25T08:11:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Git常见问题处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">Git常见问题处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-09-21T02:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-21</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、fatal-unable-to-access-‘’-OpenSSL-SSL-read-Connection-was-reset-errno-10054-问题"><a href="#一、fatal-unable-to-access-‘’-OpenSSL-SSL-read-Connection-was-reset-errno-10054-问题" class="headerlink" title="一、fatal: unable to access ‘’: OpenSSL SSL_read: Connection was reset, errno 10054 问题"></a>一、fatal: unable to access ‘’: OpenSSL SSL_read: Connection was reset, errno 10054 问题</h4><h3 id="解决方式："><a href="#解决方式：" class="headerlink" title="解决方式："></a>解决方式：</h3><p>执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global https.sslVerify &quot;false&quot;   </span><br></pre></td></tr></table></figure>
+
+<h4 id="二、fatal-unable-to-access-‘’-Recv-failure-Connection-was-reset-问题"><a href="#二、fatal-unable-to-access-‘’-Recv-failure-Connection-was-reset-问题" class="headerlink" title="二、fatal: unable to access ‘’: Recv failure Connection was reset 问题"></a>二、fatal: unable to access ‘’: Recv failure Connection was reset 问题</h4><h3 id="解决方式：-1"><a href="#解决方式：-1" class="headerlink" title="解决方式："></a>解决方式：</h3><p>执行以下命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --unset http.proxy </span><br><span class="line">git config --global --unset https.proxy</span><br></pre></td></tr></table></figure>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Linux常用命令使用详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -282,6 +711,22 @@
 <h2 id="buffer"><a href="#buffer" class="headerlink" title="buffer"></a>buffer</h2><p>buffer 和 cache 相近，稍有区别。考虑内存写文件到硬盘的过程，内存和磁盘的IO差距很大，如果内存要等待数据写完之后才继续后面的操作，会影响程序的运行速度，也会降低系统的相应。所以系统设计了 buffer，写到硬盘的数据会放到 buffer 里面，内存很快把数据写到 buffer，可以继续其他的工作，而硬盘可以在后台慢慢读出 buffer 中的数据，保存起来。这样就提高了读写的效率。</p>
 <h3 id="手动清理缓存"><a href="#手动清理缓存" class="headerlink" title="手动清理缓存"></a>手动清理缓存</h3><p>手动清理一下 cache：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、-ulimit-命令的使用"><a href="#二、-ulimit-命令的使用" class="headerlink" title="二、 ulimit 命令的使用"></a>二、 ulimit 命令的使用</h4><h3 id="ulimit-命令简介"><a href="#ulimit-命令简介" class="headerlink" title="ulimit 命令简介"></a>ulimit 命令简介</h3><p>Linux对于每个用户，系统限制其最大进程数。为提高性能，可以根据设备资源情况，设置各linux 用户的最大进程数。<br>可以用ulimit -a 来显示当前的各种用户进程限制。<br>core file size          (blocks, -c) 0<br>data seg size           (kbytes, -d) unlimited<br>scheduling priority             (-e) 0<br>file size               (blocks, -f) unlimited<br>pending signals                 (-i) 127768<br>max locked memory       (kbytes, -l) 64<br>max memory size         (kbytes, -m) unlimited<br>open files                      (-n) 1024<br>pipe size            (512 bytes, -p) 8<br>POSIX message queues     (bytes, -q) 819200<br>real-time priority              (-r) 0<br>stack size              (kbytes, -s) 8192<br>cpu time               (seconds, -t) unlimited<br>max user processes              (-u) 127768<br>virtual memory          (kbytes, -v) unlimited<br>file locks                      (-x) unlimited</p>
+<h2 id="参数描述"><a href="#参数描述" class="headerlink" title="参数描述"></a>参数描述</h2><p>ulimited 不限制用户可以使用的资源，但本设置对可打开的最大文件数（max open files）<br>和可同时运行的最大进程数（max user processes）无效<br>-a 列出所有当前资源极限<br>-c 设置core文件的最大值.单位:blocks<br>-d 设置一个进程的数据段的最大值.单位:kbytes<br>-f Shell 创建文件的文件大小的最大值，单位：blocks<br>-h 指定设置某个给定资源的硬极限。如果用户拥有 root 用户权限，可以增大硬极限。任何用户均可减少硬极限<br>-l 可以锁住的物理内存的最大值<br>-m 可以使用的常驻内存的最大值,单位：kbytes<br>-n 每个进程可以同时打开的最大文件数<br>-p 设置管道的最大值，单位为block，1block&#x3D;512bytes<br>-s 指定堆栈的最大值：单位：kbytes<br>-S 指定为给定的资源设置软极限。软极限可增大到硬极限的值。如果 -H 和 -S 标志均未指定，极限适用于以上二者<br>-t 指定每个进程所使用的秒数,单位：seconds<br>-u 可以运行的最大并发进程数<br>-v Shell可使用的最大的虚拟内存，单位：kbytes</p>
+<h3 id="ulimit-命令参数设置"><a href="#ulimit-命令参数设置" class="headerlink" title="ulimit 命令参数设置"></a>ulimit 命令参数设置</h3><p>对于需要做许多 socket 连接并使它们处于打开状态的 Java 应用程序而言，<br>最好通过使用 ulimit -n xx 修改每个进程可打开的文件数，缺省值是 1024。<br>ulimit -n 4096 将每个进程可以打开的文件数目加大到4096，缺省为1024<br>其他建议设置成无限制（unlimited）的一些重要设置是：<br>数据段长度：ulimit -d unlimited<br>最大内存大小：ulimit -m unlimited<br>堆栈大小：ulimit -s unlimited<br>CPU 时间：ulimit -t unlimited<br>虚拟内存：ulimit -v unlimited</p>
+<h3 id="比较常用的使用案例"><a href="#比较常用的使用案例" class="headerlink" title="比较常用的使用案例"></a>比较常用的使用案例</h3><h2 id="解除-Linux-系统的最大进程数和最大文件打开数限制"><a href="#解除-Linux-系统的最大进程数和最大文件打开数限制" class="headerlink" title="解除 Linux 系统的最大进程数和最大文件打开数限制"></a>解除 Linux 系统的最大进程数和最大文件打开数限制</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加如下的行</span></span><br><span class="line">* soft noproc 11000</span><br><span class="line">* hard noproc 11000</span><br><span class="line">* soft nofile 4100</span><br><span class="line">* hard nofile 4100</span><br></pre></td></tr></table></figure>
+<p>说明：* 代表针对所有用户，noproc 是代表最大进程数，nofile 是代表最大文件打开数</p>
+<h2 id="让-SSH-接受-Login-程式的登入，方便在-ssh-客户端查看-ulimit-a-资源限制"><a href="#让-SSH-接受-Login-程式的登入，方便在-ssh-客户端查看-ulimit-a-资源限制" class="headerlink" title="让 SSH 接受 Login 程式的登入，方便在 ssh 客户端查看 ulimit -a 资源限制"></a>让 SSH 接受 Login 程式的登入，方便在 ssh 客户端查看 ulimit -a 资源限制</h2><p>a、vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>把 UserLogin 的值改为 yes，并把 # 注释去掉<br>b、重启 sshd 服务：<br>&#x2F;etc&#x2F;init.d&#x2F;sshd restart</p>
+<h2 id="修改所有-linux-用户的环境变量文件"><a href="#修改所有-linux-用户的环境变量文件" class="headerlink" title="修改所有 linux 用户的环境变量文件"></a>修改所有 linux 用户的环境变量文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> vi /etc/profile</span><br><span class="line">ulimit -u 10000</span><br><span class="line">ulimit -n 4096</span><br><span class="line">ulimit -d unlimited</span><br><span class="line">ulimit -m unlimited</span><br><span class="line">ulimit -s unlimited</span><br><span class="line">ulimit -t unlimited</span><br><span class="line">ulimit -v unlimited</span><br></pre></td></tr></table></figure>
+<p>保存后运行#source &#x2F;etc&#x2F;profile 使其生效</p>
+<h2 id="查看Linuxz系统级最大打开文件数限制"><a href="#查看Linuxz系统级最大打开文件数限制" class="headerlink" title="查看Linuxz系统级最大打开文件数限制"></a>查看Linuxz系统级最大打开文件数限制</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
+<p>修改该值</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 22158 &gt; /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改网络内内核TCP连接的相关限制"><a href="#修改网络内内核TCP连接的相关限制" class="headerlink" title="修改网络内内核TCP连接的相关限制"></a>修改网络内内核TCP连接的相关限制</h2><h1 id="第一步-修改-etc-sysctl-conf文件"><a href="#第一步-修改-etc-sysctl-conf文件" class="headerlink" title="第一步:修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第一步:修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_local_port_range &#x3D; 1024 65000<br>表示将本地端口范围设置在1024-65000之间<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明新的本地端口范围设置成功。理论上单独一个进程可以同时建立60000多个TCP客户端连接。</p>
+<h1 id="第二部-修改-etc-sysctl-conf文件"><a href="#第二部-修改-etc-sysctl-conf文件" class="headerlink" title="第二部: 修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第二部: 修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_conntrack_max &#x3D; 10240<br>这表明将系统最大跟踪的TCP连接数限制设置为10240，不过此值要尽量小，节省内核内存的占用。<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明系统最大跟踪的TCP连接数限制修改成功。理论上单独一个进程可以同时建立10000多个TCP客户端连接。</p>
+
     
 
     
@@ -414,6 +859,24 @@
 <p>由于服务器的内存不够，采用方案一，测试过是有效的</p>
 <h2 id="方案二-进程内存超限-OR-系统剩余可用内存不足"><a href="#方案二-进程内存超限-OR-系统剩余可用内存不足" class="headerlink" title="方案二 进程内存超限 OR 系统剩余可用内存不足"></a>方案二 进程内存超限 OR 系统剩余可用内存不足</h2><p>可参考<a target="_blank" rel="noopener" href="https://doris.apache.org/zh-CN/docs/dev/admin-manual/maint-monitor/memory-management/memory-limit-exceeded-analysis/#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90">doris官方文档问题说明</a></p>
 <p>根据计算公式：一个简单的计算公式: MemAvailable &#x3D; MemFree - LowWaterMark + (PageCache - min(PageCache &#x2F; 2, LowWaterMark))<br>根据MemTotal、vm&#x2F;min_free_kbytes、confg::mem_limit、config::max_sys_mem_available_low_water_mark_bytes共同算出，并避免浪费过多内存。其中MemTotal是系统总内存，取值同样来自&#x2F;proc&#x2F;meminfo；vm&#x2F;min_free_kbytes是操作系统给内存GC过程预留的buffer，取值通常在 0.4% 到 5% 之间，某些云服务器上vm&#x2F;min_free_kbytes可能为5%，这会导致直观上系统可用内存比真实值少；调大config::max_sys_mem_available_low_water_mark_bytes将在大于16G内存的机器上，为Full GC预留更多的内存buffer，反之调小将尽可能充分使用内存。</p>
+<h4 id="三、be节点启动失败"><a href="#三、be节点启动失败" class="headerlink" title="三、be节点启动失败"></a>三、be节点启动失败</h4><h3 id="问题现象1：fail-to-parse-storage-root-path-config"><a href="#问题现象1：fail-to-parse-storage-root-path-config" class="headerlink" title="问题现象1：fail to parse storage_root_path config"></a>问题现象1：fail to parse storage_root_path config</h3><p>错误日志如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">W0925 <span class="number">14</span>:<span class="number">15</span>:<span class="number">08.979497</span>  <span class="number">6996</span> options.cpp:<span class="number">151</span>] fail to parse storage_root_path config. value=[/opt/<span class="keyword">module</span>/doris/doris-storage1;/opt/<span class="keyword">module</span>/doris/doris-storage2]</span><br><span class="line">F0925 <span class="number">14</span>:<span class="number">15</span>:<span class="number">08.986045</span>  <span class="number">6996</span> doris_main.cpp:<span class="number">345</span>] parse config storage path failed, path=/opt/<span class="keyword">module</span>/doris/doris-storage1;/opt/<span class="keyword">module</span>/doris/doris-storage2</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">*** Query id: <span class="number">0</span>-<span class="number">0</span> ***</span><br><span class="line">*** Aborted at <span class="number">1695622508</span> (unix time) <span class="keyword">try</span> <span class="string">&quot;date -d @1695622508&quot;</span> <span class="keyword">if</span> you are using GNU date ***</span><br><span class="line">*** Current BE git commitID: Unknown ***</span><br><span class="line">*** SIGABRT unkown detail <span class="title function_">explain</span> <span class="params">(@<span class="number">0x1b54</span>)</span> received by PID <span class="number">6996</span> (TID <span class="number">0x7fc91470dd40</span>) from PID <span class="number">6996</span>; stack trace: ***</span><br><span class="line"> <span class="number">0</span># doris::signal::(anonymous namespace)::FailureSignalHandler(<span class="type">int</span>, siginfo_t*, <span class="keyword">void</span>*) at /root/doris/be/src/common/signal_handler.h:<span class="number">420</span></span><br></pre></td></tr></table></figure>
+<p>发现be的配置文件be.conf</p>
+<p>storage_root_path &#x3D; &#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage1;&#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage2<br>配置错了<br>storage_root_path &#x3D; &#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage1;&#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage2</p>
+<h3 id="问题现象2：Internal-error-file-descriptors-limit-is-too-small"><a href="#问题现象2：Internal-error-file-descriptors-limit-is-too-small" class="headerlink" title="问题现象2：Internal error: file descriptors limit is too small"></a>问题现象2：Internal error: file descriptors limit is too small</h3><p>错误日志如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">W0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.026659</span>  <span class="number">9539</span> storage_engine.cpp:<span class="number">180</span>] check fd number failed, error: Internal error: file descriptors limit is too small</span><br><span class="line">W0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.026710</span>  <span class="number">9539</span> storage_engine.cpp:<span class="number">98</span>] open engine failed, error: Internal error: file descriptors limit is too small</span><br><span class="line">F0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.028481</span>  <span class="number">9539</span> doris_main.cpp:<span class="number">408</span>] fail to open StorageEngine, res=file descriptors limit is too small</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">    @     <span class="number">0x55a7b9501c0d</span>  google::LogMessage::Fail()</span><br><span class="line">    @     <span class="number">0x55a7b9504149</span>  google::LogMessage::SendToLog()</span><br><span class="line">    @     <span class="number">0x55a7b9501776</span>  google::LogMessage::Flush()</span><br><span class="line">    @     <span class="number">0x55a7b95047b9</span>  google::LogMessageFatal::~LogMessageFatal()</span><br><span class="line">    @     <span class="number">0x55a7b4eb34c8</span>  main</span><br><span class="line">    @     <span class="number">0x7efc995cf555</span>  __libc_start_main</span><br><span class="line">    @     <span class="number">0x55a7b4ea502a</span>  _start</span><br><span class="line">    @              (nil)  (unknown)</span><br><span class="line">*** Query id: <span class="number">0</span>-<span class="number">0</span> ***</span><br><span class="line">*** Aborted at <span class="number">1695622760</span> (unix time) <span class="keyword">try</span> <span class="string">&quot;date -d @1695622760&quot;</span> <span class="keyword">if</span> you are using GNU date ***</span><br><span class="line">*** Current BE git commitID: Unknown ***</span><br></pre></td></tr></table></figure>
+<h2 id="查看文件打开数限制"><a href="#查看文件打开数限制" class="headerlink" title="查看文件打开数限制"></a>查看文件打开数限制</h2><p>修改 &#x2F;etc&#x2F;security&#x2F;limits.conf, 加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;* soft nofile 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* hard nofile 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* soft nproc 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* hard nproc 204800 &quot; &gt;&gt; /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+
+<p>修改 &#x2F;etc&#x2F;sysctl.conf, 加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo fs.file-max = 6553560 &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<p>echo fs.file-max &#x3D; 6553560 &gt;&gt; &#x2F;etc&#x2F;sysctl.conf</p>
+<h2 id="通过命令设置好file-descriptors"><a href="#通过命令设置好file-descriptors" class="headerlink" title="通过命令设置好file descriptors"></a>通过命令设置好file descriptors</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 65536</span><br></pre></td></tr></table></figure>
+<p>也可以将该配置写到到启动脚本中，以便下次打开终端会话时不需要再次设置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash</span></span><br><span class="line">echo &#x27;ulimit -n 65536&#x27; &gt;&gt;~/.bashrc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh</span></span><br><span class="line">echo &#x27;ulimit -n 65536&#x27; &gt;&gt;~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>这个非常有效<br>由于断电服务器挂了，然后新重启服务器。导致之前的配置没了。所以建议加到启动设置中。<br>也可通过在&#x2F;etc&#x2F;profile添加一行<br>ulimit -n 65536<br>source &#x2F;etc&#x2F;profile 使其生效</p>
+<h3 id="用集群方式启动时，fe报了个错"><a href="#用集群方式启动时，fe报了个错" class="headerlink" title="用集群方式启动时，fe报了个错"></a>用集群方式启动时，fe报了个错</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which: no java <span class="title function_">in</span> <span class="params">(/root/perl5/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/openssh/bin)</span></span><br></pre></td></tr></table></figure>
+<p>初步使用方案，单独启动fe</p>
 
     
 
@@ -707,15 +1170,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>

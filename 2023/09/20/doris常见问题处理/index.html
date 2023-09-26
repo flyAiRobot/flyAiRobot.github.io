@@ -18,7 +18,7 @@
 <meta property="og:description" content="一、 备份表  使用 create table 表名 as select * from 表名 123create table &#96;stk&#96;.&#96;ods_gljd_getsupplier_backup&#96; PROPERTIES(&quot;replication_num&quot; &#x3D; &quot;1&quot;) as select * from &#96;stk&#96;.&#96;ods_gljd_getsupplier&#96;">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-20T02:46:56.000Z">
-<meta property="article:modified_time" content="2023-09-21T01:51:34.988Z">
+<meta property="article:modified_time" content="2023-09-25T09:23:28.809Z">
 <meta property="article:author" content="柯 峰">
 <meta property="article:tag" content="Doris">
 <meta name="twitter:card" content="summary">
@@ -245,7 +245,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">480字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -254,7 +254,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">2分</span>
+      <span class="post-count">5分</span>
     </span>
   </span>
 </div>
@@ -313,6 +313,24 @@
 <p>由于服务器的内存不够，采用方案一，测试过是有效的</p>
 <h2 id="方案二-进程内存超限-OR-系统剩余可用内存不足"><a href="#方案二-进程内存超限-OR-系统剩余可用内存不足" class="headerlink" title="方案二 进程内存超限 OR 系统剩余可用内存不足"></a>方案二 进程内存超限 OR 系统剩余可用内存不足</h2><p>可参考<a target="_blank" rel="noopener" href="https://doris.apache.org/zh-CN/docs/dev/admin-manual/maint-monitor/memory-management/memory-limit-exceeded-analysis/#%E9%94%99%E8%AF%AF%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90">doris官方文档问题说明</a></p>
 <p>根据计算公式：一个简单的计算公式: MemAvailable &#x3D; MemFree - LowWaterMark + (PageCache - min(PageCache &#x2F; 2, LowWaterMark))<br>根据MemTotal、vm&#x2F;min_free_kbytes、confg::mem_limit、config::max_sys_mem_available_low_water_mark_bytes共同算出，并避免浪费过多内存。其中MemTotal是系统总内存，取值同样来自&#x2F;proc&#x2F;meminfo；vm&#x2F;min_free_kbytes是操作系统给内存GC过程预留的buffer，取值通常在 0.4% 到 5% 之间，某些云服务器上vm&#x2F;min_free_kbytes可能为5%，这会导致直观上系统可用内存比真实值少；调大config::max_sys_mem_available_low_water_mark_bytes将在大于16G内存的机器上，为Full GC预留更多的内存buffer，反之调小将尽可能充分使用内存。</p>
+<h4 id="三、be节点启动失败"><a href="#三、be节点启动失败" class="headerlink" title="三、be节点启动失败"></a>三、be节点启动失败</h4><h3 id="问题现象1：fail-to-parse-storage-root-path-config"><a href="#问题现象1：fail-to-parse-storage-root-path-config" class="headerlink" title="问题现象1：fail to parse storage_root_path config"></a>问题现象1：fail to parse storage_root_path config</h3><p>错误日志如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">W0925 <span class="number">14</span>:<span class="number">15</span>:<span class="number">08.979497</span>  <span class="number">6996</span> options.cpp:<span class="number">151</span>] fail to parse storage_root_path config. value=[/opt/<span class="keyword">module</span>/doris/doris-storage1;/opt/<span class="keyword">module</span>/doris/doris-storage2]</span><br><span class="line">F0925 <span class="number">14</span>:<span class="number">15</span>:<span class="number">08.986045</span>  <span class="number">6996</span> doris_main.cpp:<span class="number">345</span>] parse config storage path failed, path=/opt/<span class="keyword">module</span>/doris/doris-storage1;/opt/<span class="keyword">module</span>/doris/doris-storage2</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">*** Query id: <span class="number">0</span>-<span class="number">0</span> ***</span><br><span class="line">*** Aborted at <span class="number">1695622508</span> (unix time) <span class="keyword">try</span> <span class="string">&quot;date -d @1695622508&quot;</span> <span class="keyword">if</span> you are using GNU date ***</span><br><span class="line">*** Current BE git commitID: Unknown ***</span><br><span class="line">*** SIGABRT unkown detail <span class="title function_">explain</span> <span class="params">(@<span class="number">0x1b54</span>)</span> received by PID <span class="number">6996</span> (TID <span class="number">0x7fc91470dd40</span>) from PID <span class="number">6996</span>; stack trace: ***</span><br><span class="line"> <span class="number">0</span># doris::signal::(anonymous namespace)::FailureSignalHandler(<span class="type">int</span>, siginfo_t*, <span class="keyword">void</span>*) at /root/doris/be/src/common/signal_handler.h:<span class="number">420</span></span><br></pre></td></tr></table></figure>
+<p>发现be的配置文件be.conf</p>
+<p>storage_root_path &#x3D; &#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage1;&#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage2<br>配置错了<br>storage_root_path &#x3D; &#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage1;&#x2F;opt&#x2F;module&#x2F;doris&#x2F;doris-storage2</p>
+<h3 id="问题现象2：Internal-error-file-descriptors-limit-is-too-small"><a href="#问题现象2：Internal-error-file-descriptors-limit-is-too-small" class="headerlink" title="问题现象2：Internal error: file descriptors limit is too small"></a>问题现象2：Internal error: file descriptors limit is too small</h3><p>错误日志如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">W0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.026659</span>  <span class="number">9539</span> storage_engine.cpp:<span class="number">180</span>] check fd number failed, error: Internal error: file descriptors limit is too small</span><br><span class="line">W0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.026710</span>  <span class="number">9539</span> storage_engine.cpp:<span class="number">98</span>] open engine failed, error: Internal error: file descriptors limit is too small</span><br><span class="line">F0925 <span class="number">14</span>:<span class="number">19</span>:<span class="number">20.028481</span>  <span class="number">9539</span> doris_main.cpp:<span class="number">408</span>] fail to open StorageEngine, res=file descriptors limit is too small</span><br><span class="line">*** Check failure stack trace: ***</span><br><span class="line">    @     <span class="number">0x55a7b9501c0d</span>  google::LogMessage::Fail()</span><br><span class="line">    @     <span class="number">0x55a7b9504149</span>  google::LogMessage::SendToLog()</span><br><span class="line">    @     <span class="number">0x55a7b9501776</span>  google::LogMessage::Flush()</span><br><span class="line">    @     <span class="number">0x55a7b95047b9</span>  google::LogMessageFatal::~LogMessageFatal()</span><br><span class="line">    @     <span class="number">0x55a7b4eb34c8</span>  main</span><br><span class="line">    @     <span class="number">0x7efc995cf555</span>  __libc_start_main</span><br><span class="line">    @     <span class="number">0x55a7b4ea502a</span>  _start</span><br><span class="line">    @              (nil)  (unknown)</span><br><span class="line">*** Query id: <span class="number">0</span>-<span class="number">0</span> ***</span><br><span class="line">*** Aborted at <span class="number">1695622760</span> (unix time) <span class="keyword">try</span> <span class="string">&quot;date -d @1695622760&quot;</span> <span class="keyword">if</span> you are using GNU date ***</span><br><span class="line">*** Current BE git commitID: Unknown ***</span><br></pre></td></tr></table></figure>
+<h2 id="查看文件打开数限制"><a href="#查看文件打开数限制" class="headerlink" title="查看文件打开数限制"></a>查看文件打开数限制</h2><p>修改 &#x2F;etc&#x2F;security&#x2F;limits.conf, 加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;* soft nofile 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* hard nofile 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* soft nproc 204800&quot; &gt;&gt; /etc/security/limits.conf</span><br><span class="line">echo &quot;* hard nproc 204800 &quot; &gt;&gt; /etc/security/limits.conf</span><br></pre></td></tr></table></figure>
+
+<p>修改 &#x2F;etc&#x2F;sysctl.conf, 加入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo fs.file-max = 6553560 &gt;&gt; /etc/sysctl.conf</span><br></pre></td></tr></table></figure>
+<p>echo fs.file-max &#x3D; 6553560 &gt;&gt; &#x2F;etc&#x2F;sysctl.conf</p>
+<h2 id="通过命令设置好file-descriptors"><a href="#通过命令设置好file-descriptors" class="headerlink" title="通过命令设置好file descriptors"></a>通过命令设置好file descriptors</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ulimit -n 65536</span><br></pre></td></tr></table></figure>
+<p>也可以将该配置写到到启动脚本中，以便下次打开终端会话时不需要再次设置。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">bash</span></span><br><span class="line">echo &#x27;ulimit -n 65536&#x27; &gt;&gt;~/.bashrc</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">zsh</span></span><br><span class="line">echo &#x27;ulimit -n 65536&#x27; &gt;&gt;~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>这个非常有效<br>由于断电服务器挂了，然后新重启服务器。导致之前的配置没了。所以建议加到启动设置中。<br>也可通过在&#x2F;etc&#x2F;profile添加一行<br>ulimit -n 65536<br>source &#x2F;etc&#x2F;profile 使其生效</p>
+<h3 id="用集群方式启动时，fe报了个错"><a href="#用集群方式启动时，fe报了个错" class="headerlink" title="用集群方式启动时，fe报了个错"></a>用集群方式启动时，fe报了个错</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">which: no java <span class="title function_">in</span> <span class="params">(/root/perl5/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/openssh/bin)</span></span><br></pre></td></tr></table></figure>
+<p>初步使用方案，单独启动fe</p>
 
     
 
@@ -625,15 +643,27 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
             
             <div class="clearfix"></div>
