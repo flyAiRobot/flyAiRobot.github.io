@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://flyairobot.github.io">
-  <title>Archives | Fly Robot</title>
+  <title>mysql中值为空的排序处理 | Fly Robot</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Fly Robot">
-<meta property="og:url" content="https://flyairobot.github.io/archives/index.html">
+  <meta name="description" content="一、问题发生背景今天在开发模块功能时，处理了个排序的小功能。  二、处理步骤当时想着排序，就直接用order by 处理，但是发现排序达不到想要的效果。null值排在最前面了。 初始写法12345678910111213SELECTt1.create_time,t1.id,t1.org_code,t1.org_name,t1.org_abbr_name FROM	oauth_tm_org t1 W">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mysql中值为空的排序处理">
+<meta property="og:url" content="https://flyairobot.github.io/2023/10/07/mysql%E4%B8%AD%E5%80%BC%E4%B8%BA%E7%A9%BA%E7%9A%84%E6%8E%92%E5%BA%8F%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Fly Robot">
+<meta property="og:description" content="一、问题发生背景今天在开发模块功能时，处理了个排序的小功能。  二、处理步骤当时想着排序，就直接用order by 处理，但是发现排序达不到想要的效果。null值排在最前面了。 初始写法12345678910111213SELECTt1.create_time,t1.id,t1.org_code,t1.org_name,t1.org_abbr_name FROM	oauth_tm_org t1 W">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-07T11:29:56.000Z">
+<meta property="article:modified_time" content="2023-10-07T11:41:27.549Z">
 <meta property="article:author" content="柯 峰">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Fly Robot" type="application/atom+xml">
@@ -207,41 +212,135 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-mysql中值为空的排序处理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/10/07/mysql%E4%B8%AD%E5%80%BC%E4%B8%BA%E7%A9%BA%E7%9A%84%E6%8E%92%E5%BA%8F%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-10-07T11:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-07</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/10/07/mysql%E4%B8%AD%E5%80%BC%E4%B8%BA%E7%A9%BA%E7%9A%84%E6%8E%92%E5%BA%8F%E5%A4%84%E7%90%86/" target="_blank">mysql中值为空的排序处理</a>
   
+    <h1 class="article-title" itemprop="name">
+      mysql中值为空的排序处理
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2023/10/07/mysql%E4%B8%AD%E5%80%BC%E4%B8%BA%E7%A9%BA%E7%9A%84%E6%8E%92%E5%BA%8F%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-10-07T11:29:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-07</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">350字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">1分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="一、问题发生背景"><a href="#一、问题发生背景" class="headerlink" title="一、问题发生背景"></a>一、问题发生背景</h2><p>今天在开发模块功能时，处理了个排序的小功能。 </p>
+<h2 id="二、处理步骤"><a href="#二、处理步骤" class="headerlink" title="二、处理步骤"></a>二、处理步骤</h2><p>当时想着排序，就直接用order by 处理，但是发现排序达不到想要的效果。null值排在最前面了。</p>
+<h1 id="初始写法"><a href="#初始写法" class="headerlink" title="初始写法"></a>初始写法</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">t1.create_time,</span><br><span class="line">t1.id,</span><br><span class="line">t1.org_code,</span><br><span class="line">t1.org_name,</span><br><span class="line">t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	t1.parent_id <span class="operator">=</span> <span class="number">0</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	t1.order_num <span class="keyword">ASC</span>,</span><br><span class="line">	t1.create_time <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<p>达不到预期</p>
+<p>最后通过查资料，mysql可以通过field is null asc 语法来设置null值排序优先。</p>
+<h1 id="优化后"><a href="#优化后" class="headerlink" title="优化后"></a>优化后</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	t1.create_time,</span><br><span class="line">	t1.order_num,</span><br><span class="line">	t1.id,</span><br><span class="line">	t1.org_code,</span><br><span class="line">	t1.org_name,</span><br><span class="line">	t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	t1.parent_id <span class="operator">=</span> <span class="number">0</span> </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">	t1.order_num <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="keyword">ASC</span>,</span><br><span class="line">	t1.order_num <span class="keyword">ASC</span>,</span><br><span class="line">	t1.create_time <span class="keyword">DESC</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>   默认情况下，MySQL会认为NULL值比其他类型的数据小， 也就是说：在order by排序的时候，NULL是最小的。</p>
+<h1 id="ASC默认NULL值是在最前面的"><a href="#ASC默认NULL值是在最前面的" class="headerlink" title="ASC默认NULL值是在最前面的"></a>ASC默认NULL值是在最前面的</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">	t1.create_time,</span><br><span class="line">	t1.order_num,</span><br><span class="line">	t1.id,</span><br><span class="line">	t1.org_code,</span><br><span class="line">	t1.org_name,</span><br><span class="line">	t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    t1.order_num <span class="keyword">ASC</span></span><br></pre></td></tr></table></figure>
+<p>要想ASC排序让NULL在最后面,修改写法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">	t1.create_time,</span><br><span class="line">	t1.order_num,</span><br><span class="line">	t1.id,</span><br><span class="line">	t1.org_code,</span><br><span class="line">	t1.org_name,</span><br><span class="line">	t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    t1.order_num <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="keyword">ASC</span>,</span><br><span class="line">	t1.order_num <span class="keyword">ASC</span>,</span><br></pre></td></tr></table></figure>
+<h1 id="DESC降序排序默认NULL值是在最后面的"><a href="#DESC降序排序默认NULL值是在最后面的" class="headerlink" title="DESC降序排序默认NULL值是在最后面的"></a>DESC降序排序默认NULL值是在最后面的</h1><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">	t1.create_time,</span><br><span class="line">	t1.order_num,</span><br><span class="line">	t1.id,</span><br><span class="line">	t1.org_code,</span><br><span class="line">	t1.org_name,</span><br><span class="line">	t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    t1.order_num <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<p>要想DESC排序让NULL在最后面,修改写法</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">SELECT</span></span><br><span class="line">	t1.create_time,</span><br><span class="line">	t1.order_num,</span><br><span class="line">	t1.id,</span><br><span class="line">	t1.org_code,</span><br><span class="line">	t1.org_name,</span><br><span class="line">	t1.org_abbr_name </span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	oauth_tm_org t1 </span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span></span><br><span class="line">    t1.order_num <span class="keyword">IS</span> <span class="keyword">NULL</span> <span class="keyword">DESC</span>,</span><br><span class="line">	t1.order_num <span class="keyword">DESC</span>,</span><br></pre></td></tr></table></figure>
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/alipay.jpg">
+                    <span class="reward-type">支付宝</span>
+                  </div>
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.png">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          柯 峰
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://flyairobot.github.io/2023/10/07/mysql中值为空的排序处理/" title="mysql中值为空的排序处理" target="_blank">https://flyairobot.github.io/2023/10/07/mysql中值为空的排序处理/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -253,395 +352,107 @@
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://flyairobot.github.io/2023/10/07/mysql%E4%B8%AD%E5%80%BC%E4%B8%BA%E7%A9%BA%E7%9A%84%E6%8E%92%E5%BA%8F%E5%A4%84%E7%90%86/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/27/http%E8%AF%B7%E6%B1%82%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-27T10:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-27</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2023/09/27/http%E8%AF%B7%E6%B1%82%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">http请求常见问题处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/27/http%E8%AF%B7%E6%B1%82%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">http请求常见问题处理</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-26T06:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">nginx常见问题处理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-09-26T06:08:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" target="_blank">nginx使用</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-25T08:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">docker常见问题处理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-09-25T08:11:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" target="_blank">docker使用</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-21T02:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">Git常见问题处理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2023-09-20T02:56:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank">Linux常用命令使用详解</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/20/doris%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-20T02:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/20/doris%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">doris常见问题处理</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Doris</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-caused">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-15T10:39:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">java.lang.NoSuchMethodError的问题处理</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">常见问题处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -682,8 +493,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
