@@ -62,7 +62,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="https://profile-avatar.csdnimg.cn/d46a8f7478cc4b7f9e09dcacabe850e0_qq_41349888.jpg!1" class="js-avatar">
+			<img src="/img/it.png" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/">柯 峰</a></h1>
@@ -99,23 +99,18 @@
 			<div class="social">
 				
 					
-						<a class="github" href="#" 
+						<a class="github" href="https://github.com/flyAiRobot" 
 												title="GitHub" target="_blank"><i class="icon-github"></i></a>
 					
 				
 					
-						<a class="github" href="#" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
-					
-				
-					
-						<a class="gitee" href="#" 
-												title="gitee" target="_blank"><i class="icon-gitee"></i></a>
-					
-				
-					
-						<a class="jianshu" href="#" 
+						<a class="jianshu" href="https://www.jianshu.com/u/c796bab7691f" 
 												title="jianshu" target="_blank"><i class="icon-jianshu"></i></a>
+					
+				
+					
+						<a class="csdn" href="https://blog.csdn.net/qq_41349888?type=blog" 
+												title="CSDN" target="_blank"><i class="icon-csdn"></i></a>
 					
 				
 			</div>
@@ -143,7 +138,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/">
-					<img src="https://profile-avatar.csdnimg.cn/d46a8f7478cc4b7f9e09dcacabe850e0_qq_41349888.jpg!1" class="js-avatar">
+					<img src="/img/it.png" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -165,22 +160,17 @@
 					
 						
 						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="github" target="_blank" 
-							href="#" title="GitHub"><i class="icon-github"></i></a>
-						
-					
-						
-						<a class="gitee" target="_blank" 
-							href="#" title="gitee"><i class="icon-gitee"></i></a>
+							href="https://github.com/flyAiRobot" title="GitHub"><i class="icon-github"></i></a>
 						
 					
 						
 						<a class="jianshu" target="_blank" 
-							href="#" title="jianshu"><i class="icon-jianshu"></i></a>
+							href="https://www.jianshu.com/u/c796bab7691f" title="jianshu"><i class="icon-jianshu"></i></a>
+						
+					
+						
+						<a class="csdn" target="_blank" 
+							href="https://blog.csdn.net/qq_41349888?type=blog" title="CSDN"><i class="icon-csdn"></i></a>
 						
 					
 				</div>
@@ -362,9 +352,9 @@
           <a class="qq share-sns" href="javascript:;" data-type="qq">
             <i class="icon icon-qq"></i>
           </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
+          <!-- <a class="douban share-sns" href="javascript:;" data-type="douban">
             <i class="icon icon-douban"></i>
-          </a>
+          </a> -->
           <a class="qzone share-sns" href="javascript:;" data-type="qzone">
             <i class="icon icon-qzone"></i>
           </a>
@@ -511,10 +501,10 @@
   var titleTime;
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
-      document.title = "(つェ⊂) 我藏好了哦~ " + originTitle;
+      document.title = "我藏好了哦~ " + originTitle;
       clearTimeout(titleTime);
     } else {
-      document.title = "(*´∇｀*) 被你发现啦~ " + originTitle;
+      document.title = "被你发现啦~ " + originTitle;
       titleTime = setTimeout(function () {
         document.title = originTitle;
       }, 2000);
@@ -563,31 +553,19 @@
     
     	<section class="tools-section tools-section-all" q-show="innerArchive">
         <div class="search-wrap">
-          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <input class="search-ipt" q-model="search" type="text" placeholder="搜索关键字">
           <i class="icon-search icon" q-show="search|isEmptyStr"></i>
           <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
         </div>
         <div class="widget tagcloud search-tag">
-          <p class="search-tag-wording">tag:</p>
+          <p class="search-tag-wording">标签:</p>
           <label class="search-switch">
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -595,7 +573,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
               </li>
              
               <li class="article-tag-list-item">
