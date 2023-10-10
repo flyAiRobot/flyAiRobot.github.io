@@ -18,7 +18,7 @@
 <meta property="og:description" content="一、 free 命令的使用free -h 显示带有G、M的系统内存     total used free shared buff&#x2F;cache available    Mem: 11G 8.9G 2.2G 9.7M 398M 2.3G   Swap: 2.0G 35M 2.0G      参数解析1234567total 是物理内存大小；used 是已经使用的内存大小，包括了 buff">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-20T02:56:16.000Z">
-<meta property="article:modified_time" content="2023-09-25T06:40:05.396Z">
+<meta property="article:modified_time" content="2023-10-10T03:48:54.850Z">
 <meta property="article:author" content="柯 峰">
 <meta property="article:tag" content="Linux">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.8k字</span>
+      <span class="post-count">2.3k字</span>
     </span>
   </span>
 
@@ -244,7 +244,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">6分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -308,7 +308,16 @@
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 22158 &gt; /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
 
 <h2 id="修改网络内内核TCP连接的相关限制"><a href="#修改网络内内核TCP连接的相关限制" class="headerlink" title="修改网络内内核TCP连接的相关限制"></a>修改网络内内核TCP连接的相关限制</h2><h1 id="第一步-修改-etc-sysctl-conf文件"><a href="#第一步-修改-etc-sysctl-conf文件" class="headerlink" title="第一步:修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第一步:修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_local_port_range &#x3D; 1024 65000<br>表示将本地端口范围设置在1024-65000之间<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明新的本地端口范围设置成功。理论上单独一个进程可以同时建立60000多个TCP客户端连接。</p>
-<h1 id="第二部-修改-etc-sysctl-conf文件"><a href="#第二部-修改-etc-sysctl-conf文件" class="headerlink" title="第二部: 修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第二部: 修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_conntrack_max &#x3D; 10240<br>这表明将系统最大跟踪的TCP连接数限制设置为10240，不过此值要尽量小，节省内核内存的占用。<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明系统最大跟踪的TCP连接数限制修改成功。理论上单独一个进程可以同时建立10000多个TCP客户端连接。</p>
+<h1 id="第二步-修改-etc-sysctl-conf文件"><a href="#第二步-修改-etc-sysctl-conf文件" class="headerlink" title="第二步: 修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第二步: 修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_conntrack_max &#x3D; 10240<br>这表明将系统最大跟踪的TCP连接数限制设置为10240，不过此值要尽量小，节省内核内存的占用。<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明系统最大跟踪的TCP连接数限制修改成功。理论上单独一个进程可以同时建立10000多个TCP客户端连接。</p>
+<h4 id="三、修改用户名密码"><a href="#三、修改用户名密码" class="headerlink" title="三、修改用户名密码"></a>三、修改用户名密码</h4><p>Linux修改密码用 passwd 命令，用root用户运行passwd ，passwd user_name可以设置或修改任何用户的密码，普通用户运行passwd只能修改它自己的密码。</p>
+<h4 id="四、linux添加用户名"><a href="#四、linux添加用户名" class="headerlink" title="四、linux添加用户名"></a>四、linux添加用户名</h4><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><p>添加用户名  useradd -m sftpuser<br>修改密码  passwd sftpuser<br>添加用户组  groupadd xjtuse<br>添加用户到用户组  usermod -a -G xjtuse sftpuser<br>查看用户信息  id sftpuser<br>也可快速添加用户组<br>useradd -g xjtuse sftpuser<br>修改目录权限：</p>
+<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><p>chgrp： 命令用于改变文件或目录的所属组。<br>chown： 命令用于改变某个文件或目录的所有者和所属的组， 该命令可以向某个用户授权， 使该用户变成指定文件的所有者或者改变文件所属的组。<br>chmod： 命令用于改变某个文件或目录的所有者和所属的组， 该命令可以向某个用户授权， 使该用户变成指定文件的所有者或者改变文件所属的组。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chgrp -R user_name /home/user_name</span><br><span class="line">chown -R user_name /home/user_name</span><br><span class="line">chmod -R 0750 /home/user_name</span><br><span class="line">chmod -R 0644 /home/user_name/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>给文件授予任何人全部权限为： chmod -R 777  filename</p>
+<p>chmod命令是linux上用于改变权限的命令，-R 是递归遍历子目录，因为你要操作的文件使用的*通配符。777，第一个7代表文件所属者的权限，第二个7代表文件所属者所在组的权限，第三个7代表其它用户的权限，7&#x3D;4+2+1，在linux中权限是可以通过数字来描述的。具体表示如下：<br>4是读的权限，2是写的权限，1是执行的权限，7就是所有权限。</p>
+<p>添加 sudo 权限</p>
+<p>使用 visudo 命令编辑 &#x2F;etc&#x2F;sudoers 文件<br>在文件下面添加用户<br>username ALL&#x3D;(ALL:ALL) ALL<br>注意： sudo 权限具有较高的操作空间，一般用户尽量不要给 sudo 权限</p>
 
     
 
@@ -620,6 +629,10 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
@@ -628,11 +641,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -640,7 +649,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
