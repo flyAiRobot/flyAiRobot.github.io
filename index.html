@@ -204,6 +204,95 @@
             
 
   
+    <article id="post-taier常见问题处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/10/10/taier%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">taier常见问题处理</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/10/10/taier%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-10-10T02:48:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-10</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、Taier框架常见问题处理"><a href="#一、Taier框架常见问题处理" class="headerlink" title="一、Taier框架常见问题处理"></a>一、Taier框架常见问题处理</h4><h3 id="1-数据同步问题失败"><a href="#1-数据同步问题失败" class="headerlink" title="1.数据同步问题失败"></a>1.数据同步问题失败</h3><h2 id="现象：执行数据同步失败"><a href="#现象：执行数据同步失败" class="headerlink" title="现象：执行数据同步失败"></a>现象：执行数据同步失败</h2><p>报错日志：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2023</span>-<span class="number">10</span>-<span class="number">10</span> <span class="number">10</span>:<span class="number">56</span>:<span class="number">09.063</span> [sync_default_default_batch_FlinkYarnSession2-RdbJobExecutor] ERROR com.dtstack.taier.scheduler.jobdealer.JobDealer [JobDealer.java:<span class="number">276</span>] - getAndUpdateEngineLog error jobId:4mmso2eumsv0 error:.</span><br><span class="line">com.dtstack.taier.common.exception.TaierDefineException: Flink Corresponding mode [SESSION] no information is configured</span><br><span class="line">        at com.dtstack.taier.scheduler.server.pluginInfo.FlinkPluginInfoStrategy.convertPluginInfo(FlinkPluginInfoStrategy.java:<span class="number">48</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.server.pluginInfo.KerberosPluginInfo.configSecurity(KerberosPluginInfo.java:<span class="number">57</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.service.ClusterService.pluginInfoJSON(ClusterService.java:<span class="number">94</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.PluginWrapper.wrapperPluginInfo(PluginWrapper.java:<span class="number">75</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator.getPluginInfo(WorkerOperator.java:<span class="number">79</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator.getEngineLog(WorkerOperator.java:<span class="number">110</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator$$FastClassBySpringCGLIB$$b285a6bd.invoke(&lt;generated&gt;)</span><br><span class="line">        at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:<span class="number">218</span>)</span><br><span class="line">        at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:<span class="number">769</span>)</span><br><span class="line">        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:<span class="number">163</span>)</span><br><span class="line">        at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:<span class="number">747</span>)</span><br><span class="line">        at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:<span class="number">55</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>  任务配置flink的模式有问题</p>
+<h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>在任务属性中配置：<br>flinkTaskRunMode&#x3D;standalone</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">taier、flink</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/10/10/taier%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-mysql中值为空的排序处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -426,6 +515,10 @@
     <h4 id="一、Nginx指令add-header和proxy-set-header的区别"><a href="#一、Nginx指令add-header和proxy-set-header的区别" class="headerlink" title="一、Nginx指令add_header和proxy_set_header的区别"></a>一、Nginx指令add_header和proxy_set_header的区别</h4><p>proxy_set_header和add_header的区别<br>区别：proxy_set_header是Nginx设置请求头信息给上游服务器，add_header是Nginx设置响应头信息给浏览器。</p>
 <p>如Nginx请求上游服务器时，添加额外的请求头，就需要使用proxy_set_header。在Java中使用HttpServletRequest#getHeader(String name)来获取请求头的值，name是请求头的名称。<br>例如：proxy_set_header X-Request-URI s c h e m e : &#x2F; &#x2F; scheme:&#x2F;&#x2F;scheme:&#x2F;&#x2F;host&#x2F;$uri;<br>String requestUrl &#x3D; request.getHeader(“X-Request-URI”);<br>if (requestUrl &#x3D;&#x3D; null) {<br>    &#x2F;&#x2F; 从Servlet服务器获取客户端请求地址<br>    requestUrl &#x3D; request.getRequestURL().toString();<br>}</p>
 <p>Nginx响应数据时，要告诉浏览器一些头信息，就要使用add_header。例如跨域访问（详细参见Nginx跨域访问配置）<br>add_header ‘Access-Control-Allow-Origin’ ‘*’;<br>add_header ‘Access-Control-Allow-Headers’ ‘X-Requested-With’;<br>add_header ‘Access-Control-Allow-Methods’ ‘GET,POST,OPTIONS’</p>
+<h4 id="二、nginx-400-bad-request-解决（生产环境）"><a href="#二、nginx-400-bad-request-解决（生产环境）" class="headerlink" title="二、nginx 400 bad request 解决（生产环境）"></a>二、nginx 400 bad request 解决（生产环境）</h4><h3 id="1-问题现象"><a href="#1-问题现象" class="headerlink" title="1.问题现象"></a>1.问题现象</h3><p>部分的请求报400，有的请求不报。</p>
+<h3 id="2-问题原因"><a href="#2-问题原因" class="headerlink" title="2.问题原因"></a>2.问题原因</h3><p>刚开始分析是以为cookie 太大，我们的项目的cookie确实大。所以改了nginx.conf 在http中添加了设置<br>client_header_buffer_size 128k;<br>large_client_header_buffers 4 128k;<br>结果发现问题依然存在。<br>然后仔细查看nginx日志。修改了参数，发现有部分请求可以成功。<br>最后反馈给上游，发现是对参数进行了校验，涉及到一些sql的安全校验。</p>
+<h3 id="3-问题解决"><a href="#3-问题解决" class="headerlink" title="3.问题解决"></a>3.问题解决</h3><p>最后让上游去修改了参数白名单校验，问题得到解决</p>
+<h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>最后仔细想了想，如果是请求头过大的，cookie过大。现象是：大部分请求都会报400.<br>因此遇到这种小部分请求出问题的，需要另辟蹊径找到问题的思路。补充：有时候body<br>太大会报413错误。可以添加：client_max_body_size 100m. </p>
 
     
 
@@ -1124,114 +1217,10 @@
 
 
   
-    <article id="caused-常见问题处理" class="article article-type-caused  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
   
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">java.lang.NoSuchMethodError的问题处理</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-15T10:39:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="一、-出现问题的现象"><a href="#一、-出现问题的现象" class="headerlink" title="一、 出现问题的现象"></a>一、 出现问题的现象</h4><pre><code>当运行程序的时候，就直接报错。如下所示：
-</code></pre>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.apache.ibatis.session.SqlSessionFactory]: Factory method <span class="string">&#x27;sqlSessionFactory&#x27;</span> threw exception; nested exception is java.lang.NoSuchMethodError: org.apache.ibatis.session.Configuration.setArgNameBasedConstructorAutoMapping(Z)V</span><br><span class="line">	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:<span class="number">185</span>)</span><br><span class="line">	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:<span class="number">651</span>)</span><br><span class="line">	... <span class="number">92</span> common frames omitted</span><br><span class="line">Caused by: java.lang.NoSuchMethodError: org.apache.ibatis.session.Configuration.setArgNameBasedConstructorAutoMapping(Z)V</span><br></pre></td></tr></table></figure>
-<pre><code>这个问题，看起来就是某个类没有找到
-</code></pre>
-<h4 id="二、-找到问题的原因"><a href="#二、-找到问题的原因" class="headerlink" title="二、 找到问题的原因"></a>二、 找到问题的原因</h4><ol>
-<li><p>首先去找到具体的类，是否有这个方法。<br> 一般情况下是可以用这种方法去找到具体的类的。但是我这边没有找到</p>
-</li>
-<li><p>通过debug方式最安全。<br> 通过本地调试，最终定为到MybatisXMLConfigBuilder 这个类里面报错。查找这个类名。确实有2个类,都是在mybatis-plus中。可以确定是由于mybatis-plus版本导致的问题。</p>
-</li>
-</ol>
-<h4 id="二、-解决问题"><a href="#二、-解决问题" class="headerlink" title="二、 解决问题"></a>二、 解决问题</h4><ol>
-<li><p>解决版本冲突的话，首先是再你引入的包中通过再pom中排除的版本引用。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">exclusion</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">exclusion</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>我这边通过该方式去排除了，但是重启还是没有用。</p>
-</li>
-<li><p>然后去查看引入包的源码</p>
-</li>
-</ol>
-<p>查看引入包的源码发现，它确实有2个版本的mybatis-plus包。通过<strong>idea</strong>中的<strong>maven-helper</strong>插件，排除掉一个版本，，重新本地打包, 发现问题还是没有解决。最后修改源码改为一个mybatis版本，虽然有报错的。但是错误较少，把问题全部修复，再重新打包，这个问题就解决了。</p>
-<ol start="3">
-<li>补充：改源码这个影响太大，想到了一个改动较小的方案<br>再后来遇到问题中，想到另一个方案：就是修改当前项目引入mybatis-plus-boot-starter使用的版本，然后修改当前项目兼容就可以了。一般这个改动较小，影响也是最小的。但是也有一个潜在的问题。就是其他项目再引入这个存在版本分歧的包时，同样也需要降低mybatis-plus-boot-starter使用的版本。<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.baomidou<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-plus-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;mybatis-plus.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ol>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">常见问题处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    </nav>
   
 
 
@@ -1361,7 +1350,7 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1369,11 +1358,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1381,11 +1366,19 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">taier、flink</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+                <a href="javascript:void(0)" class="js-tag color1">Doris</a>
               </li>
              
               <li class="article-tag-list-item">
