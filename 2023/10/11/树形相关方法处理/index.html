@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://flyairobot.github.io">
-  <title>Archives: 2023/9 | Fly Robot</title>
+  <title>树形相关方法处理 | Fly Robot</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Fly Robot">
-<meta property="og:url" content="https://flyairobot.github.io/archives/2023/09/index.html">
+  <meta name="description" content="一、通用树形表结构设计123456789101112131415161718192021222324252627282930313233CREATE TABLE &#96;std_business_node_tree&#96; (  &#96;id&#96; bigint(20) NOT NULL COMMENT &amp;#x27;主键&amp;#x27;,  &#96;tenant_id&#96; bigint(20) NOT NULL DEFAULT &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="树形相关方法处理">
+<meta property="og:url" content="https://flyairobot.github.io/2023/10/11/%E6%A0%91%E5%BD%A2%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86/index.html">
 <meta property="og:site_name" content="Fly Robot">
+<meta property="og:description" content="一、通用树形表结构设计123456789101112131415161718192021222324252627282930313233CREATE TABLE &#96;std_business_node_tree&#96; (  &#96;id&#96; bigint(20) NOT NULL COMMENT &amp;#x27;主键&amp;#x27;,  &#96;tenant_id&#96; bigint(20) NOT NULL DEFAULT &amp;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-10-11T06:49:27.000Z">
+<meta property="article:modified_time" content="2023-10-11T08:19:04.505Z">
 <meta property="article:author" content="柯 峰">
+<meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Fly Robot" type="application/atom+xml">
@@ -197,409 +202,290 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-树形相关方法处理" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2023" class="archive-year">2023</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/27/http%E8%AF%B7%E6%B1%82%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-27T10:36:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-27</time>
-</a>
-
-        </div>
-    	 
+      <header class="article-header">
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/27/http%E8%AF%B7%E6%B1%82%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">http请求常见问题处理</a>
   
+    <h1 class="article-title" itemprop="name">
+      树形相关方法处理
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2023/10/11/%E6%A0%91%E5%BD%A2%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2023-10-11T06:49:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-11</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">3.6k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">19分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、通用树形表结构设计"><a href="#一、通用树形表结构设计" class="headerlink" title="一、通用树形表结构设计"></a>一、通用树形表结构设计</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `std_business_node_tree` (</span><br><span class="line">  `id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;主键&#x27;</span>,</span><br><span class="line">  `tenant_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;租户ID&#x27;</span>,</span><br><span class="line">  `name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;节点名称&#x27;</span>,</span><br><span class="line">  `parent_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;-1&#x27;</span> COMMENT <span class="string">&#x27;父id&#x27;</span>,</span><br><span class="line">  `parent_ids` <span class="type">varchar</span>(<span class="number">1000</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;-1&#x27;</span> COMMENT <span class="string">&#x27;节点的父ids&#x27;</span>,</span><br><span class="line">  `code` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;节点编码&#x27;</span>,</span><br><span class="line">  `parent_code` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;父编码&#x27;</span>,</span><br><span class="line">  `parent_codes` <span class="type">varchar</span>(<span class="number">2000</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;节点的父编码s&#x27;</span>,</span><br><span class="line">  `business_type` tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;业务类型: 0-标准&#x27;</span>,</span><br><span class="line">  `level` tinyint(<span class="number">4</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;1&#x27;</span> COMMENT <span class="string">&#x27;节点层级&#x27;</span>,</span><br><span class="line">  `icon` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;节点图标&#x27;</span>,</span><br><span class="line">  `<span class="keyword">order</span>` <span class="type">smallint</span>(<span class="number">6</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;1&#x27;</span> COMMENT <span class="string">&#x27;序号&#x27;</span>,</span><br><span class="line">  `creator_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人ID&#x27;</span>,</span><br><span class="line">  `creator_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建人&#x27;</span>,</span><br><span class="line">  `create_time` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;创建时间&#x27;</span>,</span><br><span class="line">  `updater_name` <span class="type">varchar</span>(<span class="number">50</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;修改人ID&#x27;</span>,</span><br><span class="line">  `updater_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;修改人ID&#x27;</span>,</span><br><span class="line">  `update_time` <span class="type">bigint</span>(<span class="number">15</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;修改时间&#x27;</span>,</span><br><span class="line">  `is_delete` bit(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> b<span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;是否删除&#x27;</span>,</span><br><span class="line">  `is_enable` bit(<span class="number">1</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> b<span class="string">&#x27;1&#x27;</span> COMMENT <span class="string">&#x27;是否启用&#x27;</span>,</span><br><span class="line">  `optimistic_lock` <span class="type">int</span>(<span class="number">11</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;乐观锁&#x27;</span>,</span><br><span class="line">  `version` <span class="type">varchar</span>(<span class="number">30</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;0.0.1&#x27;</span> COMMENT <span class="string">&#x27;版本号&#x27;</span>,</span><br><span class="line">  `remark` <span class="type">varchar</span>(<span class="number">255</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;备注&#x27;</span>,</span><br><span class="line">  `type` tinyint(<span class="number">4</span>) <span class="keyword">DEFAULT</span> <span class="string">&#x27;0&#x27;</span> COMMENT <span class="string">&#x27;是否叶子节点: 0-非叶子节点 1-叶子节点&#x27;</span>,</span><br><span class="line">  `project_id` <span class="type">bigint</span>(<span class="number">20</span>) <span class="keyword">DEFAULT</span> <span class="keyword">NULL</span> COMMENT <span class="string">&#x27;项目ID&#x27;</span>,</span><br><span class="line">  <span class="keyword">PRIMARY</span> KEY (`id`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  <span class="keyword">UNIQUE</span> KEY `uidx_name_business_type` (`parent_id`,`name`,`business_type`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  KEY `idx_tenant_id` (`tenant_id`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  KEY `idx_parent_id` (`parent_id`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  KEY `idx_level` (`level`) <span class="keyword">USING</span> BTREE,</span><br><span class="line">  KEY `idx_project_id` (`project_id`) <span class="keyword">USING</span> BTREE</span><br><span class="line">) ENGINE<span class="operator">=</span>InnoDB <span class="keyword">DEFAULT</span> CHARSET<span class="operator">=</span>utf8mb4 COMMENT<span class="operator">=</span><span class="string">&#x27;业务节点树&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、树形列表查询"><a href="#二、树形列表查询" class="headerlink" title="二、树形列表查询"></a>二、树形列表查询</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;BusinessNodeTreeVO&gt; <span class="title function_">treeList</span><span class="params">(BusinessNodeTreeReq req)</span> &#123;</span><br><span class="line">        <span class="comment">// 默认为标准</span></span><br><span class="line">        <span class="keyword">if</span> (Objects.isNull(req.getBusinessType())) &#123;</span><br><span class="line">            req.setBusinessType(CODE_SET.getKey());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isEmpty(req.getName())) &#123;</span><br><span class="line">            List&lt;BusinessNodeTreeVO&gt; list = selectAllTreeNodes(req.getBusinessType());</span><br><span class="line">            Map&lt;Long, List&lt;BusinessNodeTreeVO&gt;&gt; parentIdMap = StreamUtils.groupBy(list, BusinessNodeTreeVO::getParentId);</span><br><span class="line">            <span class="comment">// 获取自身与其ID的映射关系</span></span><br><span class="line">            Map&lt;String, BusinessNodeTreeVO&gt; mapBy = StreamUtils.toMap(list, BusinessNodeTreeVO::getId, v -&gt; v);</span><br><span class="line">            List&lt;BusinessNodeTreeVO&gt; rootList = parentIdMap.remove(-<span class="number">1L</span>);</span><br><span class="line">            <span class="comment">// 构造树形结果</span></span><br><span class="line">            parentIdMap.forEach((parentId, boList) -&gt; &#123;</span><br><span class="line">                <span class="type">BusinessNodeTreeVO</span> <span class="variable">parentVO</span> <span class="operator">=</span> mapBy.get(parentId + <span class="string">&quot;&quot;</span>);</span><br><span class="line">                <span class="keyword">if</span> (Objects.isNull(parentVO)) &#123;</span><br><span class="line">                    <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(StandardErrorCodeEnum.NOT_EXIST_BUSINESS_NODE,</span><br><span class="line">                            <span class="string">&quot;&quot;</span> + parentId);</span><br><span class="line">                &#125;</span><br><span class="line">                parentVO.setChild(boList);</span><br><span class="line">                <span class="keyword">if</span> (CheckUtils.isNotEmpty(boList)) &#123;</span><br><span class="line">                    List&lt;BusinessNodeTreeVO&gt; sortList = boList.stream()</span><br><span class="line">                            .sorted(Comparator.comparing(BusinessNodeTreeVO::getOrder))</span><br><span class="line">                            .collect(Collectors.toList());</span><br><span class="line">                    parentVO.setChild(sortList);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line">            <span class="keyword">if</span> (CheckUtils.isEmpty(rootList)) &#123;</span><br><span class="line">                <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> rootList.stream().sorted(Comparator.comparing(BusinessNodeTreeVO::getOrder))</span><br><span class="line">                    .collect(Collectors.toList());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 只支持名称搜索</span></span><br><span class="line">        List&lt;BusinessNodeTreeVO&gt; listByName = selectAllTreeNodesByName(req.getBusinessType(),</span><br><span class="line">                req.getName());</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(listByName)) &#123;</span><br><span class="line">            <span class="keyword">return</span> Collections.emptyList();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 查询该节点下相关的子孙节点以及祖先节点</span></span><br><span class="line">        List&lt;Long&gt; ids = listByName.stream()</span><br><span class="line">                .map(m -&gt; Long.parseLong(m.getId()))</span><br><span class="line">                .collect(Collectors.toList());</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; allRelationNodes = selectAllRelationNodes(ids);</span><br><span class="line"></span><br><span class="line">        Map&lt;Long, List&lt;BusinessNodeTreeBO&gt;&gt; parentIdMap =</span><br><span class="line">                StreamUtils.groupBy(allRelationNodes, BusinessNodeTreeBO::getParentId);</span><br><span class="line">        <span class="comment">// 获取自身与其ID的映射关系</span></span><br><span class="line">        Map&lt;BigInteger, BusinessNodeTreeBO&gt; mapBy = StreamUtils.toMap(allRelationNodes,</span><br><span class="line">                BusinessNodeTreeBO::getId, v -&gt; v);</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; rootList = parentIdMap.remove(-<span class="number">1L</span>);</span><br><span class="line">        <span class="comment">// 构造树形结果</span></span><br><span class="line">        parentIdMap.forEach((parentId, boList) -&gt; &#123;</span><br><span class="line">            <span class="type">BusinessNodeTreeBO</span> <span class="variable">parentBO</span> <span class="operator">=</span> mapBy.get(BigInteger.valueOf(parentId));</span><br><span class="line">            <span class="keyword">if</span> (Objects.isNull(parentBO)) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">BusinessException</span>(StandardErrorCodeEnum.NOT_EXIST_BUSINESS_NODE,</span><br><span class="line">                        <span class="string">&quot;&quot;</span> + parentId);</span><br><span class="line">            &#125;</span><br><span class="line">            parentBO.setChild(boList);</span><br><span class="line">            <span class="keyword">if</span> (CheckUtils.isNotEmpty(boList)) &#123;</span><br><span class="line">                List&lt;BusinessNodeTreeBO&gt; sortList = boList.stream()</span><br><span class="line">                        .sorted(Comparator.comparing(BusinessNodeTreeBO::getOrder))</span><br><span class="line">                        .collect(Collectors.toList());</span><br><span class="line">                parentBO.setChild(sortList);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> converter.mapAsList(rootList.stream().</span><br><span class="line">                sorted(Comparator.comparing(BusinessNodeTreeBO::getOrder))</span><br><span class="line">                .collect(Collectors.toList()), BusinessNodeTreeVO.class);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、树形列表支持拖拽"><a href="#三、树形列表支持拖拽" class="headerlink" title="三、树形列表支持拖拽"></a>三、树形列表支持拖拽</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">synchronized</span> Boolean <span class="title function_">moveNode</span><span class="params">(MoveNodeReq req)</span> &#123;</span><br><span class="line">        checkMoverReq(req);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// move pre</span></span><br><span class="line">        <span class="keyword">if</span> (DirectionEnum.PRE.getKey().equals(req.getDirection())) &#123;</span><br><span class="line">            movePreNode(req);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (DirectionEnum.AFTER.getKey().equals(req.getDirection())) &#123;</span><br><span class="line">            moveAfterNode(req);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            moveInNode(req);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Boolean.TRUE;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="节点校验"><a href="#节点校验" class="headerlink" title="节点校验"></a>节点校验</h3><p>private void checkMoverReq(MoveNodeReq req) {<br>        &#x2F;&#x2F; 源节点不存在<br>        if (Objects.isNull(req.getSourceId())) {<br>            throw new BusinessException(StandardErrorCodeEnum.NOT_EXIST_SOURCE_ID,<br>                    “” + req.getSourceId());<br>        }</p>
+<pre><code>    // 目标节点不存在
+    if (Objects.isNull(req.getTargetId())) &#123;
+        throw new BusinessException(StandardErrorCodeEnum.NOT_EXIST_TARGET_ID,
+                &quot;&quot; + req.getTargetId());
+</code></pre>
+<p>&#x2F;&#x2F;            req.setTargetId(-1L);<br>        }</p>
+<pre><code>    // 源节点不存在
+    BusinessNodeTreeBO source = get(BigInteger.valueOf(req.getSourceId()));
+    if (Objects.isNull(source)) &#123;
+        throw new BusinessException(StandardErrorCodeEnum.NOT_EXIST_SOURCE_ID,
+                &quot;&quot; + req.getSourceId());
+    &#125;
+
+    // 目标节点不存在
+    BusinessNodeTreeBO target = get(BigInteger.valueOf(req.getTargetId()));
+    if (Objects.isNull(target)) &#123;
+        throw new BusinessException(StandardErrorCodeEnum.NOT_EXIST_TARGET_ID,
+                &quot;&quot; + req.getTargetId());
+    &#125;
+
+    // 目标节点业务类型不与源节点类型匹配
+    if (!target.getBusinessType().equals(source.getBusinessType())) &#123;
+        throw new BusinessException(StandardErrorCodeEnum.SOURCE_NOT_MATCH_TARGET_FOR_BUSINESS);
+    &#125;
+
+&#125;
+</code></pre>
+<h3 id="向目标节点前面插入源节点"><a href="#向目标节点前面插入源节点" class="headerlink" title="向目标节点前面插入源节点"></a>向目标节点前面插入源节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">movePreNode</span><span class="params">(MoveNodeReq req)</span> &#123;</span><br><span class="line">        <span class="type">Long</span> <span class="variable">sourceId</span> <span class="operator">=</span> req.getSourceId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">sourceBO</span> <span class="operator">=</span> get(BigInteger.valueOf(sourceId));</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; sourceRelationNodes = fetchAllChildren(sourceBO.getBusinessType(),</span><br><span class="line">                sourceId);</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(sourceRelationNodes)) &#123;</span><br><span class="line">            sourceRelationNodes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        sourceRelationNodes.add(sourceBO);</span><br><span class="line">        <span class="type">Long</span> <span class="variable">targetId</span> <span class="operator">=</span> req.getTargetId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">targetBO</span> <span class="operator">=</span> get(BigInteger.valueOf(targetId));</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; targetRelationNodes = fetchAllChildren(sourceBO.getBusinessType(),</span><br><span class="line">                targetBO.getParentId());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 移除掉序号小于目标节点的需要，剩下需要改动的序号</span></span><br><span class="line">        targetRelationNodes.removeIf(f -&gt; &#123;</span><br><span class="line">            <span class="keyword">if</span> (f.getOrder().compareTo(targetBO.getOrder()) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> f.getId().equals(BigInteger.valueOf(sourceId));</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标节点后面的所有节点添加序号</span></span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; handleList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isNotEmpty(targetRelationNodes)) &#123;</span><br><span class="line">            targetRelationNodes.forEach(c -&gt; &#123;</span><br><span class="line">                <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">                bo.setId(c.getId());</span><br><span class="line">                bo.setOrder((<span class="type">short</span>) (c.getOrder() + <span class="number">1</span>));</span><br><span class="line">                bo.setLevel(c.getLevel());</span><br><span class="line">                bo.setParentId(c.getParentId());</span><br><span class="line">                bo.setParentIds(c.getParentIds());</span><br><span class="line">                handleList.add(bo);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 源节点以及所有子节点的变更</span></span><br><span class="line">        sourceRelationNodes.forEach(c -&gt; &#123;</span><br><span class="line">            <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">            bo.setId(c.getId());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当为源节点时</span></span><br><span class="line">            <span class="keyword">if</span> (c.getId().equals(BigInteger.valueOf(sourceId))) &#123;</span><br><span class="line">                <span class="comment">// 处理层级，层级：与目标层级一致</span></span><br><span class="line">                bo.setLevel(targetBO.getLevel());</span><br><span class="line">                <span class="comment">// 处理排序, 排序：目标节点的序号+1</span></span><br><span class="line">                bo.setOrder(targetBO.getOrder());</span><br><span class="line">                <span class="comment">// 处理父节点，父节点：与目标节点一致</span></span><br><span class="line">                bo.setParentId(targetBO.getParentId());</span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids</span></span><br><span class="line">                bo.setParentIds(targetBO.getParentIds());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 当为源节点的子节点时</span></span><br><span class="line">                <span class="comment">// 处理层级，层级：当前层级 - 源节点层级 + 当前源节点层级（目标节点层级）</span></span><br><span class="line">                bo.setLevel((<span class="type">byte</span>) (c.getLevel() - sourceBO.getLevel()</span><br><span class="line">                        + targetBO.getLevel()));</span><br><span class="line">                <span class="comment">// 处理排序, 排序：不变</span></span><br><span class="line">                bo.setOrder(c.getOrder());</span><br><span class="line">                <span class="comment">// 处理父节点，父节点：不变（仍为源节点)</span></span><br><span class="line">                bo.setParentId(c.getParentId());</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids： 目标节点ids + 处理后的当前节点（移除掉源节点的parentIds）</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">parentIds</span> <span class="operator">=</span> c.getParentIds();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 截取掉目标ids</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> parentIds.indexOf(sourceBO.getId() + <span class="string">&quot;&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">tmpStr</span> <span class="operator">=</span> parentIds.substring(index);</span><br><span class="line">                <span class="type">String</span> <span class="variable">lastStr</span> <span class="operator">=</span> targetBO.getParentIds() + <span class="string">&quot;,&quot;</span> + tmpStr;</span><br><span class="line">                bo.setParentIds(lastStr);</span><br><span class="line">            &#125;</span><br><span class="line">            handleList.add(bo);</span><br><span class="line">        &#125;);</span><br><span class="line">        batchUpdateList(handleList);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="向目标节点里面插入源节点"><a href="#向目标节点里面插入源节点" class="headerlink" title="向目标节点里面插入源节点"></a>向目标节点里面插入源节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">moveInNode</span><span class="params">(MoveNodeReq req)</span> &#123;</span><br><span class="line">        <span class="type">Long</span> <span class="variable">sourceId</span> <span class="operator">=</span> req.getSourceId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">sourceBO</span> <span class="operator">=</span> get(BigInteger.valueOf(sourceId));</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; sourceRelationNodes = fetchAllChildren(sourceBO.getBusinessType(),</span><br><span class="line">                sourceId);</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(sourceRelationNodes)) &#123;</span><br><span class="line">            sourceRelationNodes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        sourceRelationNodes.add(sourceBO);</span><br><span class="line">        <span class="type">Long</span> <span class="variable">targetId</span> <span class="operator">=</span> req.getTargetId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">targetBO</span> <span class="operator">=</span> get(BigInteger.valueOf(targetId));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标节点后面的所有节点添加序号</span></span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; handleList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 源节点以及所有子节点的变更</span></span><br><span class="line">        sourceRelationNodes.forEach(c -&gt; &#123;</span><br><span class="line">            <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">            bo.setId(c.getId());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当为源节点时</span></span><br><span class="line">            <span class="keyword">if</span> (c.getId().equals(BigInteger.valueOf(sourceId))) &#123;</span><br><span class="line">                <span class="comment">// 处理层级，层级：与目标层级一致</span></span><br><span class="line">                bo.setLevel((<span class="type">byte</span>) (targetBO.getLevel() + <span class="number">1</span>));</span><br><span class="line">                <span class="comment">// 处理排序, 排序：排序为1</span></span><br><span class="line">                bo.setOrder((<span class="type">short</span>) <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 处理父节点，父节点：与目标节点一致</span></span><br><span class="line">                bo.setParentId(targetBO.getId().longValue());</span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids</span></span><br><span class="line">                bo.setParentIds(targetBO.getParentIds() + <span class="string">&quot;,&quot;</span> + targetBO.getId().longValue());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 当为源节点的子节点时</span></span><br><span class="line">                <span class="comment">// 处理层级，层级：当前层级 - 源节点层级 + 当前源节点层级（目标节点层级）</span></span><br><span class="line">                bo.setLevel((<span class="type">byte</span>) (c.getLevel() - sourceBO.getLevel()</span><br><span class="line">                        + targetBO.getLevel() + <span class="number">1</span>));</span><br><span class="line">                <span class="comment">// 处理排序, 排序：不变</span></span><br><span class="line"><span class="comment">//                bo.setOrder((short) (targetBO.getOrder() + 1));</span></span><br><span class="line">                <span class="comment">// 处理父节点，父节点：不变（仍为源节点)</span></span><br><span class="line"><span class="comment">//                bo.setParentId(targetBO.getParentId());</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids： 目标节点ids + 处理后的当前节点（移除掉源节点的parentIds）</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">parentIds</span> <span class="operator">=</span> c.getParentIds();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 截取掉目标ids</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> parentIds.indexOf(sourceBO.getId() + <span class="string">&quot;&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">tmpStr</span> <span class="operator">=</span> parentIds.substring(index);</span><br><span class="line">                <span class="type">String</span> <span class="variable">lastStr</span> <span class="operator">=</span> targetBO.getParentIds() + <span class="string">&quot;,&quot;</span></span><br><span class="line">                        + sourceId + <span class="string">&quot;,&quot;</span> + tmpStr;</span><br><span class="line">                bo.setParentIds(lastStr);</span><br><span class="line">            &#125;</span><br><span class="line">            handleList.add(bo);</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; directChild = listByColumn(BusinessNodeTreeJdbc.parentId, targetId);</span><br><span class="line">        <span class="comment">// 处理该父节点下的所有的子节点的顺序向后加1</span></span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isNotEmpty(directChild)) &#123;</span><br><span class="line">            directChild.forEach(c -&gt; &#123;</span><br><span class="line">                <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">                bo.setId(c.getId());</span><br><span class="line">                bo.setOrder((<span class="type">short</span>) (c.getOrder() + <span class="number">1</span>));</span><br><span class="line">                handleList.add(bo);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        batchUpdateList(handleList);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="向目标节点里面插入源节点-1"><a href="#向目标节点里面插入源节点-1" class="headerlink" title="向目标节点里面插入源节点"></a>向目标节点里面插入源节点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">moveInNode</span><span class="params">(MoveNodeReq req)</span> &#123;</span><br><span class="line">        <span class="type">Long</span> <span class="variable">sourceId</span> <span class="operator">=</span> req.getSourceId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">sourceBO</span> <span class="operator">=</span> get(BigInteger.valueOf(sourceId));</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; sourceRelationNodes = fetchAllChildren(sourceBO.getBusinessType(),</span><br><span class="line">                sourceId);</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(sourceRelationNodes)) &#123;</span><br><span class="line">            sourceRelationNodes = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">        sourceRelationNodes.add(sourceBO);</span><br><span class="line">        <span class="type">Long</span> <span class="variable">targetId</span> <span class="operator">=</span> req.getTargetId();</span><br><span class="line">        <span class="type">BusinessNodeTreeBO</span> <span class="variable">targetBO</span> <span class="operator">=</span> get(BigInteger.valueOf(targetId));</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 目标节点后面的所有节点添加序号</span></span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; handleList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 源节点以及所有子节点的变更</span></span><br><span class="line">        sourceRelationNodes.forEach(c -&gt; &#123;</span><br><span class="line">            <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">            bo.setId(c.getId());</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 当为源节点时</span></span><br><span class="line">            <span class="keyword">if</span> (c.getId().equals(BigInteger.valueOf(sourceId))) &#123;</span><br><span class="line">                <span class="comment">// 处理层级，层级：与目标层级一致</span></span><br><span class="line">                bo.setLevel((<span class="type">byte</span>) (targetBO.getLevel() + <span class="number">1</span>));</span><br><span class="line">                <span class="comment">// 处理排序, 排序：排序为1</span></span><br><span class="line">                bo.setOrder((<span class="type">short</span>) <span class="number">1</span>);</span><br><span class="line">                <span class="comment">// 处理父节点，父节点：与目标节点一致</span></span><br><span class="line">                bo.setParentId(targetBO.getId().longValue());</span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids</span></span><br><span class="line">                bo.setParentIds(targetBO.getParentIds() + <span class="string">&quot;,&quot;</span> + targetBO.getId().longValue());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">// 当为源节点的子节点时</span></span><br><span class="line">                <span class="comment">// 处理层级，层级：当前层级 - 源节点层级 + 当前源节点层级（目标节点层级）</span></span><br><span class="line">                bo.setLevel((<span class="type">byte</span>) (c.getLevel() - sourceBO.getLevel()</span><br><span class="line">                        + targetBO.getLevel() + <span class="number">1</span>));</span><br><span class="line">                <span class="comment">// 处理排序, 排序：不变</span></span><br><span class="line"><span class="comment">//                bo.setOrder((short) (targetBO.getOrder() + 1));</span></span><br><span class="line">                <span class="comment">// 处理父节点，父节点：不变（仍为源节点)</span></span><br><span class="line"><span class="comment">//                bo.setParentId(targetBO.getParentId());</span></span><br><span class="line"></span><br><span class="line">                <span class="comment">// 处理父节点ids, 父节点ids： 目标节点ids + 处理后的当前节点（移除掉源节点的parentIds）</span></span><br><span class="line">                <span class="type">String</span> <span class="variable">parentIds</span> <span class="operator">=</span> c.getParentIds();</span><br><span class="line"></span><br><span class="line">                <span class="comment">// 截取掉目标ids</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">index</span> <span class="operator">=</span> parentIds.indexOf(sourceBO.getId() + <span class="string">&quot;&quot;</span>);</span><br><span class="line">                <span class="type">String</span> <span class="variable">tmpStr</span> <span class="operator">=</span> parentIds.substring(index);</span><br><span class="line">                <span class="type">String</span> <span class="variable">lastStr</span> <span class="operator">=</span> targetBO.getParentIds() + <span class="string">&quot;,&quot;</span></span><br><span class="line">                        + sourceId + <span class="string">&quot;,&quot;</span> + tmpStr;</span><br><span class="line">                bo.setParentIds(lastStr);</span><br><span class="line">            &#125;</span><br><span class="line">            handleList.add(bo);</span><br><span class="line">        &#125;);</span><br><span class="line">        List&lt;BusinessNodeTreeBO&gt; directChild = listByColumn(BusinessNodeTreeJdbc.parentId, targetId);</span><br><span class="line">        <span class="comment">// 处理该父节点下的所有的子节点的顺序向后加1</span></span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isNotEmpty(directChild)) &#123;</span><br><span class="line">            directChild.forEach(c -&gt; &#123;</span><br><span class="line">                <span class="type">BusinessNodeTreeBO</span> <span class="variable">bo</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">BusinessNodeTreeBO</span>();</span><br><span class="line">                bo.setId(c.getId());</span><br><span class="line">                bo.setOrder((<span class="type">short</span>) (c.getOrder() + <span class="number">1</span>));</span><br><span class="line">                handleList.add(bo);</span><br><span class="line">            &#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        batchUpdateList(handleList);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="常用sql"><a href="#常用sql" class="headerlink" title="常用sql"></a>常用sql</h3><h2 id="根据关键字模糊搜索"><a href="#根据关键字模糊搜索" class="headerlink" title="根据关键字模糊搜索"></a>根据关键字模糊搜索</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAllTreeNodesByName&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;boMap&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.selectColumn&quot;</span>/&gt;</span></span><br><span class="line">    from <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.tableName&quot;</span>/&gt;</span></span><br><span class="line">    where business_type = #&#123;businessType&#125;</span><br><span class="line">    and name like concat(&#x27;%&#x27;, #&#123;name&#125;, &#x27;%&#x27;)</span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="查询该节点相关祖先和子孙节点"><a href="#查询该节点相关祖先和子孙节点" class="headerlink" title="查询该节点相关祖先和子孙节点"></a>查询该节点相关祖先和子孙节点</h2><p>···xml<br><select id="selectAllRelationNodes" resultMap="boMap"><br>        select<br>            distinct id,<br>            creator_id,<br>            creator_name,<br>            updater_name,<br>            updater_id,<br>            create_time,<br>            update_time,<br>            is_delete,<br>            is_enable,<br>            optimistic_lock,<br>            version,<br>            remark,<br>            tenant_id,<br>            <code>name</code>,<br>            parent_id,<br>            parent_ids,<br>            code,<br>            parent_code,<br>            parent_codes,<br>            business_type,<br>            <code>level</code>,<br>            icon,<br>            <code>order</code><br>        from <include refid="com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.tableName"/><br>        where  (id in<br>            <foreach collection="list" item="value" open="(" close=")" separator=", "><br>                #{value}<br>            </foreach><br>        )<br>        or<br>        (<foreach collection="list" item="value" open="(" close=")" separator="or"><br>            find_in_set(id, (select parent_ids from<br>            <include refid="com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.tableName"/><br>            where id &#x3D; #{value}))<br>        </foreach>)<br>        or<br>        (<foreach collection="list" item="value" open="(" close=")" separator="or"><br>            find_in_set(#{value}, parent_ids)<br>        </foreach>)</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## 获取所有孩子节点</span><br><span class="line">```xml</span><br><span class="line">&lt;select id=&quot;fetchAllChildren&quot;</span><br><span class="line">			resultMap=&quot;boMap&quot;&gt;</span><br><span class="line">		select</span><br><span class="line">		&lt;include refid=&quot;com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.selectColumn&quot;/&gt;</span><br><span class="line">		from &lt;include refid=&quot;com.zhqc.apaas.dgc.atomic.standard.dao.BaseBusinessNodeTreeDao.tableName&quot;/&gt;</span><br><span class="line">		where business_type = #&#123;businessType&#125;</span><br><span class="line">		and find_in_set(#&#123;parentId&#125;, parent_ids)</span><br><span class="line">	&lt;/select&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="批量更新节点数据"><a href="#批量更新节点数据" class="headerlink" title="批量更新节点数据"></a>批量更新节点数据</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--可选更新 - 批操作--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;batchUpdateList&quot;</span>  <span class="attr">parameterType</span>=<span class="string">&quot;java.util.List&quot;</span>&gt;</span></span><br><span class="line">	update std_business_node_tree</span><br><span class="line">	<span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;set&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;parent_id =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.parentId != null&quot;</span>&gt;</span></span><br><span class="line">					when id = #&#123;i.id&#125; then #&#123;i.parentId&#125;</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.parentId == null&quot;</span>&gt;</span></span><br><span class="line">					when id = #&#123;i.id&#125; then parent_id</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;parent_ids =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.parentIds != null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then #&#123;i.parentIds&#125;</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.parentIds == null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then parent_ids</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;level =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span> &gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.level != null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then #&#123;i.level&#125;</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.level == null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then level</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;`order` =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span> &gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.order !=null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then #&#123;i.order&#125;</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;i.order ==null&quot;</span>&gt;</span></span><br><span class="line">					when id=#&#123;i.id&#125; then `order`</span><br><span class="line">				<span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">	where</span><br><span class="line">	<span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> &gt;</span></span><br><span class="line">		id = #&#123;i.id&#125;</span><br><span class="line">	<span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="树形特殊问题"><a href="#树形特殊问题" class="headerlink" title="树形特殊问题"></a>树形特殊问题</h4><h3 id="刚开始不支持拖拽，后期要支持拖拽。"><a href="#刚开始不支持拖拽，后期要支持拖拽。" class="headerlink" title="刚开始不支持拖拽，后期要支持拖拽。"></a>刚开始不支持拖拽，后期要支持拖拽。</h3><p>需要添加sort_index，默认为1</p>
+<h3 id="首先需要补充所有树形的顺序号"><a href="#首先需要补充所有树形的顺序号" class="headerlink" title="首先需要补充所有树形的顺序号"></a>首先需要补充所有树形的顺序号</h3><h2 id="我这边采用的是就是从页面第一次加载树时，调用接口是来进行初始化顺序号。"><a href="#我这边采用的是就是从页面第一次加载树时，调用接口是来进行初始化顺序号。" class="headerlink" title="我这边采用的是就是从页面第一次加载树时，调用接口是来进行初始化顺序号。"></a>我这边采用的是就是从页面第一次加载树时，调用接口是来进行初始化顺序号。</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;ProjTbGroupBO&gt; <span class="title function_">listFirstLevel</span><span class="params">(ProjTbGroupQuery query)</span> &#123;</span><br><span class="line">        query.setParentId(<span class="literal">null</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;ProjTbGroupBO&gt; projTbGroupBOS = projTbGroupDAO.listFirstLevel(query);</span><br><span class="line">        <span class="comment">// 如果包含不为1的sortIndex</span></span><br><span class="line">        <span class="type">boolean</span> <span class="variable">existNotOneFlag</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isNotEmpty(projTbGroupBOS)) &#123;</span><br><span class="line">            <span class="keyword">for</span> (ProjTbGroupBO projTbGroupBO : projTbGroupBOS) &#123;</span><br><span class="line">                <span class="keyword">if</span> (projTbGroupBO.getSortIndex() != <span class="number">1</span>) &#123;</span><br><span class="line">                    existNotOneFlag = <span class="literal">true</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (!existNotOneFlag) &#123;</span><br><span class="line">                batchUpdateSortIndex();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> projTbGroupBOS;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="批量更新序号"><a href="#批量更新序号" class="headerlink" title="批量更新序号"></a>批量更新序号</h1><p>batchUpdateSortIndex();</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">batchUpdateSortIndex</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="comment">// 处理分组</span></span><br><span class="line">        List&lt;ProjTbGroupBO&gt; list = projTbGroupDAO.list(<span class="keyword">new</span> <span class="title class_">ProjTbGroupQuery</span>());</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(list)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        List&lt;ProjTbGroupBO&gt; rootList = list.stream().filter(fi -&gt; Objects.isNull(fi.getParentId())).collect(Collectors.toList());</span><br><span class="line">        List&lt;ProjTbGroupBO&gt; childList = list.stream().filter(fi -&gt; Objects.nonNull(fi.getParentId())).collect(Collectors.toList());</span><br><span class="line">        fillSortIndex(rootList);</span><br><span class="line">        List&lt;ProjTbGroupBO&gt; updateList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(rootList);</span><br><span class="line">        fillChildren(rootList, childList, updateList);</span><br><span class="line">        batchUpdateGroupSort(updateList);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="填充序号，按照创建时间升序来填值"><a href="#填充序号，按照创建时间升序来填值" class="headerlink" title="填充序号，按照创建时间升序来填值"></a>填充序号，按照创建时间升序来填值</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">fillSortIndex</span><span class="params">(List&lt;ProjTbGroupBO&gt; rootList)</span> &#123;</span><br><span class="line">    rootList.sort(Comparator.comparing(ProjTbGroupBO::getCreateTime));</span><br><span class="line">    IntStream.range(<span class="number">0</span>, rootList.size()).forEach(i -&gt; rootList.get(i).setSortIndex(i + <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="从根节点开始填充序号，一直到所有的孩子都填充完-然后更新所有的数据"><a href="#从根节点开始填充序号，一直到所有的孩子都填充完-然后更新所有的数据" class="headerlink" title="从根节点开始填充序号，一直到所有的孩子都填充完,然后更新所有的数据"></a>从根节点开始填充序号，一直到所有的孩子都填充完,然后更新所有的数据</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">fillChildren</span><span class="params">(List&lt;ProjTbGroupBO&gt; handleList, List&lt;ProjTbGroupBO&gt; childList,</span></span><br><span class="line"><span class="params">                              List&lt;ProjTbGroupBO&gt; updateList)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(childList)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (ProjTbGroupBO projTbGroupBO : handleList) &#123;</span><br><span class="line">            List&lt;ProjTbGroupBO&gt; newHandleList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            List&lt;ProjTbGroupBO&gt; newChildList = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (ProjTbGroupBO tbGroupBO : childList) &#123;</span><br><span class="line">                <span class="keyword">if</span> (projTbGroupBO.getId().equals(tbGroupBO.getParentId())) &#123;</span><br><span class="line">                    newHandleList.add(tbGroupBO);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    newChildList.add(tbGroupBO);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            projTbGroupBO.setChildren(newHandleList);</span><br><span class="line">            fillSortIndex(newHandleList);</span><br><span class="line">            updateList.addAll(newHandleList);</span><br><span class="line">            fillChildren(newHandleList, newChildList, updateList);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="更新所有列表"><a href="#更新所有列表" class="headerlink" title="更新所有列表"></a>更新所有列表</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">batchUpdateGroupSort</span><span class="params">(List&lt;ProjTbGroupBO&gt; updateList)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (CheckUtils.isEmpty(updateList)) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// 1. 插入新数据</span></span><br><span class="line">        <span class="keyword">if</span> (updateList.size() &lt;= BATCH_INSERT_PAGE_SIZE) &#123;</span><br><span class="line">            <span class="comment">// 小于500条一次性执行</span></span><br><span class="line">            projTbGroupDAO.batchUpdateSort(updateList);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 超过500条分页执行</span></span><br><span class="line">            List&lt;List&lt;ProjTbGroupBO&gt;&gt; sqlPaging = ListUtils.partition(updateList, BATCH_INSERT_PAGE_SIZE);</span><br><span class="line">            <span class="keyword">for</span> (List&lt;ProjTbGroupBO&gt; part : sqlPaging) &#123;</span><br><span class="line">                projTbGroupDAO.batchUpdateSort(part);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="涉及到相关sql"><a href="#涉及到相关sql" class="headerlink" title="涉及到相关sql"></a>涉及到相关sql</h1><p>批量更新值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">update</span> <span class="attr">id</span>=<span class="string">&quot;batchUpdateSort&quot;</span>&gt;</span></span><br><span class="line">        update dcp_proj_tb_group</span><br><span class="line">        <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;set&quot;</span> <span class="attr">suffixOverrides</span>=<span class="string">&quot;,&quot;</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;parent_id =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">                    when id = #&#123;i.id&#125; then #&#123;i.parentId&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;parent_ids =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">                    when id=#&#123;i.id&#125; then #&#123;i.parentIds&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">trim</span> <span class="attr">prefix</span>=<span class="string">&quot;`sort_index` =case&quot;</span> <span class="attr">suffix</span>=<span class="string">&quot;end,&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">                    when id=#&#123;i.id&#125; then #&#123;i.sortIndex&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">trim</span>&gt;</span></span><br><span class="line">        where</span><br><span class="line">        <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;list&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;or&quot;</span> <span class="attr">item</span>=<span class="string">&quot;i&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">            id = #&#123;i.id&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">update</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>查询最大序号值</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryMaxSortIndex&quot;</span> <span class="attr">resultType</span>=<span class="string">&quot;java.lang.Integer&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;parentId !=null &quot;</span>&gt;</span></span><br><span class="line">        select max(sort_index) from dcp_proj_tb_group where parent_id = #&#123;parentId&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;parentId == null &quot;</span>&gt;</span></span><br><span class="line">        select max(sort_index) from dcp_proj_tb_group where parent_id is null</span><br><span class="line">    <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>查询所有孩子节点</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;queryChildrenById&quot;</span></span></span><br><span class="line"><span class="tag">            <span class="attr">resultType</span>=<span class="string">&quot;com.zhqc.apaas.dgc.develop.datamodelv1.model.bo.ProjTbGroupBO&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;selectColumnForm&quot;</span>/&gt;</span></span><br><span class="line">        WHERE find_in_set(parent_ids, #&#123;id&#125;)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+    
+
+    
+    <div class="page-reward">
+      <a href="javascript:void(0);" class="page-reward-btn tooltip-top" target="_self">
+        <div class="tooltip tooltip-east">
+          <span class="tooltip-item">
+            赏
+          </span>
+          <span class="tooltip-content">
+            <span class="tooltip-text">
+              <span class="tooltip-inner">
+                <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i
+                    class="icon icon-quo-right"></i></p>
+                <div class="reward-box">
+                  
+                  
+                  <div class="reward-box-item">
+                    <img class="reward-img" src="/img/weixin.JPG">
+                    <span class="reward-type">微信</span>
+                  </div>
+                  
+                </div>
+              </span>
+            </span>
+          </span>
+        </div>
+      </a>
+    </div>
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          柯 峰
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://flyairobot.github.io/2023/10/11/树形相关方法处理/" title="树形相关方法处理" target="_blank">https://flyairobot.github.io/2023/10/11/树形相关方法处理/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
+    
+
+    
+    
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <!-- <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a> -->
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <!-- <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a> -->
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=https://flyairobot.github.io/2023/10/11/%E6%A0%91%E5%BD%A2%E7%9B%B8%E5%85%B3%E6%96%B9%E6%B3%95%E5%A4%84%E7%90%86/" alt="微信分享二维码"> -->
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-26T06:08:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2023/10/10/taier%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">taier常见问题处理</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/26/nginx%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">nginx常见问题处理</a>
-  
-    </h1>
-  
+        
+        
+    </div>
+</aside>
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-09-26T06:08:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-26</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/26/nginx%E4%BD%BF%E7%94%A8/" target="_blank">nginx使用</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Nginx</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-25T08:12:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/25/docker%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">docker常见问题处理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" class="archive-article-date">
-        <time datetime="2023-09-25T08:11:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-25</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/25/docker%E4%BD%BF%E7%94%A8/" target="_blank">docker使用</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Docker</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-21T02:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/21/Git%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">Git常见问题处理</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2023-09-20T02:56:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank">Linux常用命令使用详解</a>
-  
-    </h1>
-  
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/20/doris%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-20T02:46:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/20/doris%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">doris常见问题处理</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Doris</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-caused">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" class="archive-article-date">
-        <time datetime="2023-09-15T10:39:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2023/09/15/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98%E5%A4%84%E7%90%86/" target="_blank">java.lang.NoSuchMethodError的问题处理</a>
-  
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">常见问题处理</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -640,8 +526,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
