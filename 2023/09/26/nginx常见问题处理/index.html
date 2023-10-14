@@ -18,7 +18,7 @@
 <meta property="og:description" content="一、Nginx指令add_header和proxy_set_header的区别proxy_set_header和add_header的区别区别：proxy_set_header是Nginx设置请求头信息给上游服务器，add_header是Nginx设置响应头信息给浏览器。 如Nginx请求上游服务器时，添加额外的请求头，就需要使用proxy_set_header。在Java中使用HttpServl">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-09-26T06:08:33.000Z">
-<meta property="article:modified_time" content="2023-10-08T09:37:13.727Z">
+<meta property="article:modified_time" content="2023-10-13T08:17:56.850Z">
 <meta property="article:author" content="柯 峰">
 <meta property="article:tag" content="Nginx">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">451字</span>
+      <span class="post-count">1.2k字</span>
     </span>
   </span>
 
@@ -244,7 +244,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -262,6 +262,24 @@
 <h3 id="2-问题原因"><a href="#2-问题原因" class="headerlink" title="2.问题原因"></a>2.问题原因</h3><p>刚开始分析是以为cookie 太大，我们的项目的cookie确实大。所以改了nginx.conf 在http中添加了设置<br>client_header_buffer_size 128k;<br>large_client_header_buffers 4 128k;<br>结果发现问题依然存在。<br>然后仔细查看nginx日志。修改了参数，发现有部分请求可以成功。<br>最后反馈给上游，发现是对参数进行了校验，涉及到一些sql的安全校验。</p>
 <h3 id="3-问题解决"><a href="#3-问题解决" class="headerlink" title="3.问题解决"></a>3.问题解决</h3><p>最后让上游去修改了参数白名单校验，问题得到解决</p>
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>最后仔细想了想，如果是请求头过大的，cookie过大。现象是：大部分请求都会报400.<br>因此遇到这种小部分请求出问题的，需要另辟蹊径找到问题的思路。补充：有时候body<br>太大会报413错误。可以添加：client_max_body_size 100m. </p>
+<h4 id="二、Sorry-the-page-you-are-looking-for-is-currently-unavailable-问题处理"><a href="#二、Sorry-the-page-you-are-looking-for-is-currently-unavailable-问题处理" class="headerlink" title="二、Sorry, the page you are looking for is currently unavailable 问题处理"></a>二、Sorry, the page you are looking for is currently unavailable 问题处理</h4><h3 id="1-现象"><a href="#1-现象" class="headerlink" title="1.现象"></a>1.现象</h3><p>当点击某一个重定向页面按钮时，页面报nginx的错。错误码为502<br>页面上报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sorry, the page you are looking for is currently unavailable.</span><br><span class="line">Please try again later.</span><br><span class="line"></span><br><span class="line">If you are the system administrator of this resource then you should check the error log for details.</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h3><p>a.查看nginx的日志，发现nginx可以跳转过去。而且查看服务日志，也是可以发现没有报错的。但是报的502.<br>说明nginx代理是没有问题的。<br>根据网上的说明，说是nginx的配置出问题了。</p>
+<p>b.然后仔细看了下nginx的配置，看我们重定向的那个页面的服务，发现我们这个服务，也是采用了nginx的代理。所以是双重代理。</p>
+<p>c.然后查另一个nginx的日志，发现了也是报错502.但是我们发现这个nginx的配置，发现worker_processes为1.因此我改成了与我们服务器相同核数的<br>（linux 可通过lscpu 命令查看CPU核数） 为16.</p>
+<p>d.重启发现依然有问题。</p>
+<p>e.然后查看了nginx的日志发现了另一个错：<br>upstream sent too big header while reading response header from upstream<br>上游头部太大</p>
+<p>接着在http模块添加了<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;</p>
+<p>f.改完之后，发现不报502了。报了另一个错302.</p>
+<p>j.302是重定向问题。继续检查nginx的配置，发现url没问题。</p>
+<p>h.然后去看了下上游nginx的日志，发现也报了upstream sent too big header while reading response header from upstream<br>同样的在http模块添加了<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;<br>最后解决</p>
+<h3 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3.解决方案"></a>3.解决方案</h3><p>在http模块添加<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;</p>
+<p>设置Nginx代理服务器从实际服务器接收到响应数据时的缓冲区的大小</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><h2 id="proxy-buffer-size"><a href="#proxy-buffer-size" class="headerlink" title="proxy_buffer_size"></a>proxy_buffer_size</h2><p>设置Nginx代理服务器从实际服务器接收到响应数据时的缓冲区的大小，默认是4k|8k（根据系统处理），</p>
+<h2 id="proxy-buffers"><a href="#proxy-buffers" class="headerlink" title="proxy_buffers"></a>proxy_buffers</h2><p>设置存储被代理服务器上的数据所占用的buffer的个数和每个buffer的大小。当当前buf不够存响应body时才会新申请一个</p>
+<h2 id="proxy-buffering"><a href="#proxy-buffering" class="headerlink" title="proxy_buffering"></a>proxy_buffering</h2><p>该指令开启从后端被代理服务器的响应body缓冲。</p>
+<p>如果proxy_buffering开启,nginx假定被代理的后端服务器会以最快速度响应,并把内容保存在由指令 proxy_buffer_size 和 proxy_buffers 指定的缓冲区里边.<br>如果响应body无法放在内存里边,那么部分内容会被写到磁盘上。<br>如果proxy_buffering被关闭了,那么响应body会按照获取body的多少立刻同步传送到客户端。nginx不尝试计算被代理服务器整个响应body的大小,nginx能从服务器接受的最大数据,是由指令 proxy_buffer_size指定的。<br>对于基于长轮询(long-polling)的Comet 应用来说,关闭 proxy_buffering 是重要的,不然异步响应将被缓存导致Comet无法工作。<br>但是无论proxy_buffering是否开启，proxy_buffer_size都是生效的。</p>
 
     
 
@@ -569,11 +587,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -585,19 +607,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">taier</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -605,7 +619,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">taier</a>
               </li>
             
             <div class="clearfix"></div>

@@ -204,6 +204,181 @@
             
 
   
+    <article id="post-正则表达式详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2023/10/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" target="_blank">正则表达式详解</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2023/10/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2023-10-12T01:33:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-10-12</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、正则表达式介绍"><a href="#一、正则表达式介绍" class="headerlink" title="一、正则表达式介绍"></a>一、正则表达式介绍</h4><p>正则表达式（Regular Expression）是一种用于匹配、查找和替换文本的强大工具。它由一系列字符和特殊字符组成，可以用来描述字符串的模式。在编程和文本处理中，正则表达式常被用于验证输入、提取信息、搜索和替换文本等操作。正则表达式并不仅限于某一种语言，但是在每种语言中有细微的差别。</p>
+<h4 id="二、正则表达式使用"><a href="#二、正则表达式使用" class="headerlink" title="二、正则表达式使用"></a>二、正则表达式使用</h4><h3 id="正则表达式的模式"><a href="#正则表达式的模式" class="headerlink" title="正则表达式的模式"></a>正则表达式的模式</h3><p>1.字面值字符：例如字母、数字、空格等，可以直接匹配它们自身。<br>2.特殊字符：例如点号 .、星号 *、加号 +、问号 ? 等，它们具有特殊的含义和功能。<br>3.字符类：用方括号 [ ] 包围的字符集合，用于匹配方括号内的任意一个字符。<br>4.元字符：例如 \d、\w、\s 等，用于匹配特定类型的字符，如数字、字母、空白字符等。<br>5.量词：例如 {n}、{n,}、{n,m} 等，用于指定匹配的次数或范围。<br>6.边界符号：例如 ^、$、\b、\B 等，用于匹配字符串的开头、结尾或单词边界位置。</p>
+<h3 id="正则表达式不同类型"><a href="#正则表达式不同类型" class="headerlink" title="正则表达式不同类型"></a>正则表达式不同类型</h3><h2 id="1-普通字符"><a href="#1-普通字符" class="headerlink" title="1.普通字符"></a>1.普通字符</h2><table>
+<thead>
+<tr>
+<th align="center">正则</th>
+<th align="center">含义</th>
+<th align="center">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">[ABC]</td>
+<td align="center">匹配 […] 中的所有字符</td>
+<td align="center">[aou] 匹配字符串 “google out after “ 中所有的 aou 字母。</td>
+</tr>
+<tr>
+<td align="center">[^ABC]</td>
+<td align="center">匹配除了 […] 中字符的所有字符</td>
+<td align="center">[^aou] 匹配字符串 “google out after “ 中所有的 aou 字母。</td>
+</tr>
+<tr>
+<td align="center">[A-Z]</td>
+<td align="center">[A-Z] 表示一个区间，匹配所有大写字母，[a-z] 表示所有小写字母</td>
+<td align="center">[A-za-z] 代表所有英文字母</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">匹配除换行符（\n、\r）之外的任何单个字符，相等于 [^\n\r]</td>
+<td align="center">.  匹配出换行符之外的所有字符</td>
+</tr>
+<tr>
+<td align="center">[\s\S]</td>
+<td align="center">匹配所有。\s 是匹配所有空白符，包括换行，\S 非空白符，不包括换行</td>
+<td align="center">\s 匹配所有空白符</td>
+</tr>
+<tr>
+<td align="center">[\w]</td>
+<td align="center">匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">[\W]</td>
+<td align="center">匹配非字母、数字、下划线。等价于 [^A-Za-z0-9_]</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+<h2 id="2-非打印字符"><a href="#2-非打印字符" class="headerlink" title="2.非打印字符"></a>2.非打印字符</h2><table>
+<thead>
+<tr>
+<th align="center">正则</th>
+<th align="center">含义</th>
+<th align="center">例子</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">\cx</td>
+<td align="center">匹配 […] 中的所有字符</td>
+<td align="center">[aou] 匹配字符串 “google out after “ 中所有的 aou 字母。</td>
+</tr>
+<tr>
+<td align="center">[^ABC]</td>
+<td align="center">匹配除了 […] 中字符的所有字符</td>
+<td align="center">[^aou] 匹配字符串 “google out after “ 中所有的 aou 字母。</td>
+</tr>
+<tr>
+<td align="center">[A-Z]</td>
+<td align="center">[A-Z] 表示一个区间，匹配所有大写字母，[a-z] 表示所有小写字母</td>
+<td align="center">[A-za-z] 代表所有英文字母</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">匹配除换行符（\n、\r）之外的任何单个字符，相等于 [^\n\r]</td>
+<td align="center">.  匹配出换行符之外的所有字符</td>
+</tr>
+<tr>
+<td align="center">[\s\S]</td>
+<td align="center">匹配所有。\s 是匹配所有空白符，包括换行，\S 非空白符，不包括换行</td>
+<td align="center">\s 匹配所有空白符</td>
+</tr>
+<tr>
+<td align="center">[\w]</td>
+<td align="center">匹配字母、数字、下划线。等价于 [A-Za-z0-9_]</td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center">[\W]</td>
+<td align="center">匹配非字母、数字、下划线。等价于 [^A-Za-z0-9_]</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">正则表达式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2023/10/12/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-树形相关方法处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -665,6 +840,24 @@
 <h3 id="2-问题原因"><a href="#2-问题原因" class="headerlink" title="2.问题原因"></a>2.问题原因</h3><p>刚开始分析是以为cookie 太大，我们的项目的cookie确实大。所以改了nginx.conf 在http中添加了设置<br>client_header_buffer_size 128k;<br>large_client_header_buffers 4 128k;<br>结果发现问题依然存在。<br>然后仔细查看nginx日志。修改了参数，发现有部分请求可以成功。<br>最后反馈给上游，发现是对参数进行了校验，涉及到一些sql的安全校验。</p>
 <h3 id="3-问题解决"><a href="#3-问题解决" class="headerlink" title="3.问题解决"></a>3.问题解决</h3><p>最后让上游去修改了参数白名单校验，问题得到解决</p>
 <h3 id="4-总结"><a href="#4-总结" class="headerlink" title="4.总结"></a>4.总结</h3><p>最后仔细想了想，如果是请求头过大的，cookie过大。现象是：大部分请求都会报400.<br>因此遇到这种小部分请求出问题的，需要另辟蹊径找到问题的思路。补充：有时候body<br>太大会报413错误。可以添加：client_max_body_size 100m. </p>
+<h4 id="二、Sorry-the-page-you-are-looking-for-is-currently-unavailable-问题处理"><a href="#二、Sorry-the-page-you-are-looking-for-is-currently-unavailable-问题处理" class="headerlink" title="二、Sorry, the page you are looking for is currently unavailable 问题处理"></a>二、Sorry, the page you are looking for is currently unavailable 问题处理</h4><h3 id="1-现象"><a href="#1-现象" class="headerlink" title="1.现象"></a>1.现象</h3><p>当点击某一个重定向页面按钮时，页面报nginx的错。错误码为502<br>页面上报错</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Sorry, the page you are looking for is currently unavailable.</span><br><span class="line">Please try again later.</span><br><span class="line"></span><br><span class="line">If you are the system administrator of this resource then you should check the error log for details.</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-原因"><a href="#2-原因" class="headerlink" title="2.原因"></a>2.原因</h3><p>a.查看nginx的日志，发现nginx可以跳转过去。而且查看服务日志，也是可以发现没有报错的。但是报的502.<br>说明nginx代理是没有问题的。<br>根据网上的说明，说是nginx的配置出问题了。</p>
+<p>b.然后仔细看了下nginx的配置，看我们重定向的那个页面的服务，发现我们这个服务，也是采用了nginx的代理。所以是双重代理。</p>
+<p>c.然后查另一个nginx的日志，发现了也是报错502.但是我们发现这个nginx的配置，发现worker_processes为1.因此我改成了与我们服务器相同核数的<br>（linux 可通过lscpu 命令查看CPU核数） 为16.</p>
+<p>d.重启发现依然有问题。</p>
+<p>e.然后查看了nginx的日志发现了另一个错：<br>upstream sent too big header while reading response header from upstream<br>上游头部太大</p>
+<p>接着在http模块添加了<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;</p>
+<p>f.改完之后，发现不报502了。报了另一个错302.</p>
+<p>j.302是重定向问题。继续检查nginx的配置，发现url没问题。</p>
+<p>h.然后去看了下上游nginx的日志，发现也报了upstream sent too big header while reading response header from upstream<br>同样的在http模块添加了<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;<br>最后解决</p>
+<h3 id="3-解决方案"><a href="#3-解决方案" class="headerlink" title="3.解决方案"></a>3.解决方案</h3><p>在http模块添加<br>proxy_buffer_size  64k;<br>proxy_buffers   32 64k;<br>proxy_busy_buffers_size 128k;</p>
+<p>设置Nginx代理服务器从实际服务器接收到响应数据时的缓冲区的大小</p>
+<h3 id="参数说明"><a href="#参数说明" class="headerlink" title="参数说明"></a>参数说明</h3><h2 id="proxy-buffer-size"><a href="#proxy-buffer-size" class="headerlink" title="proxy_buffer_size"></a>proxy_buffer_size</h2><p>设置Nginx代理服务器从实际服务器接收到响应数据时的缓冲区的大小，默认是4k|8k（根据系统处理），</p>
+<h2 id="proxy-buffers"><a href="#proxy-buffers" class="headerlink" title="proxy_buffers"></a>proxy_buffers</h2><p>设置存储被代理服务器上的数据所占用的buffer的个数和每个buffer的大小。当当前buf不够存响应body时才会新申请一个</p>
+<h2 id="proxy-buffering"><a href="#proxy-buffering" class="headerlink" title="proxy_buffering"></a>proxy_buffering</h2><p>该指令开启从后端被代理服务器的响应body缓冲。</p>
+<p>如果proxy_buffering开启,nginx假定被代理的后端服务器会以最快速度响应,并把内容保存在由指令 proxy_buffer_size 和 proxy_buffers 指定的缓冲区里边.<br>如果响应body无法放在内存里边,那么部分内容会被写到磁盘上。<br>如果proxy_buffering被关闭了,那么响应body会按照获取body的多少立刻同步传送到客户端。nginx不尝试计算被代理服务器整个响应body的大小,nginx能从服务器接受的最大数据,是由指令 proxy_buffer_size指定的。<br>对于基于长轮询(long-polling)的Comet 应用来说,关闭 proxy_buffering 是重要的,不然异步响应将被缓存导致Comet无法工作。<br>但是无论proxy_buffering是否开启，proxy_buffer_size都是生效的。</p>
 
     
 
@@ -1073,154 +1266,6 @@
 
 
   
-    <article id="post-Linux常用命令使用详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" target="_blank">Linux常用命令使用详解</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2023-09-20T02:56:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2023-09-20</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="一、-free-命令的使用"><a href="#一、-free-命令的使用" class="headerlink" title="一、 free 命令的使用"></a>一、 free 命令的使用</h4><p>free -h 显示带有G、M的系统内存</p>
-<table>
-<thead>
-<tr>
-<th align="center"></th>
-<th align="center">total</th>
-<th align="center">used</th>
-<th align="center">free</th>
-<th align="center">shared</th>
-<th align="center">buff&#x2F;cache</th>
-<th align="center">available</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">Mem:</td>
-<td align="center">11G</td>
-<td align="center">8.9G</td>
-<td align="center">2.2G</td>
-<td align="center">9.7M</td>
-<td align="center">398M</td>
-<td align="center">2.3G</td>
-</tr>
-<tr>
-<td align="center">Swap:</td>
-<td align="center">2.0G</td>
-<td align="center">35M</td>
-<td align="center">2.0G</td>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-</tbody></table>
-<h3 id="参数解析"><a href="#参数解析" class="headerlink" title="参数解析"></a>参数解析</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">total 是物理内存大小；</span><br><span class="line">used 是已经使用的内存大小，包括了 buff/cache 和 应用程序实际使用的内存；</span><br><span class="line">free 是空闲的内存数，没有被真正使用的内存空间；</span><br><span class="line">shared 是共享内存大小，共享内存是进程间通信的一种方式；</span><br><span class="line">buff/cache 系统为了提高文件的读写速率而使用的一块内存空间，当应用程序需要使用内存时，这块内存是可以很快被回收而被用户空间程序使用。</span><br><span class="line">available，估算的是当前系统中有多少内存可以用于应用程序的使用，buff/cache占用的内存在有需要的时候是可以被回收的。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h3 id="available和free的区别"><a href="#available和free的区别" class="headerlink" title="available和free的区别"></a>available和free的区别</h3><p>可用内存&#x3D;系统free memory+buff&#x2F;cache。free是系统中空闲的内存大小，buff&#x2F;cache虽然是在需要的时候可以回收的，但是当前也是被利用状态，available统计的是应用程序可用内存空间，buff&#x2F;cache是可回收，可被应用程序使用的。从应用程序角度来看，对于应用程序来说，buffers&#x2F;cached 是等于可用的，因为buffer&#x2F;cached是为了提高文件读取的性能，当应用程序需在用到内存的时候，buffer&#x2F;cached会很快地被回收。</p>
-<h3 id="buff-cache机制"><a href="#buff-cache机制" class="headerlink" title="buff&#x2F;cache机制"></a>buff&#x2F;cache机制</h3><p>buff&#x2F;cache是为了协调内存与磁盘文件读写IO速率差异性、提高系统的工作效率而设计的。</p>
-<h2 id="cache"><a href="#cache" class="headerlink" title="cache"></a>cache</h2><p>cache 就是缓存的意思。当系统读文件的时候，是把数据从硬盘读到内存里，因为硬盘比内存慢很多，所以这个过程会很耗时。为了提高效率，linux 会把读进来的文件在内存中缓存下来，供程序接下来使用，即使程序结束，cache 也不会被自动释放，系统会根据换出算法把cache缓存置换出去。所以如果有程序进行大量的读文件操作，内存使用率也会相应的提高。</p>
-<h2 id="buffer"><a href="#buffer" class="headerlink" title="buffer"></a>buffer</h2><p>buffer 和 cache 相近，稍有区别。考虑内存写文件到硬盘的过程，内存和磁盘的IO差距很大，如果内存要等待数据写完之后才继续后面的操作，会影响程序的运行速度，也会降低系统的相应。所以系统设计了 buffer，写到硬盘的数据会放到 buffer 里面，内存很快把数据写到 buffer，可以继续其他的工作，而硬盘可以在后台慢慢读出 buffer 中的数据，保存起来。这样就提高了读写的效率。</p>
-<h3 id="手动清理缓存"><a href="#手动清理缓存" class="headerlink" title="手动清理缓存"></a>手动清理缓存</h3><p>手动清理一下 cache：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 1 &gt; /proc/sys/vm/drop_caches</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、-ulimit-命令的使用"><a href="#二、-ulimit-命令的使用" class="headerlink" title="二、 ulimit 命令的使用"></a>二、 ulimit 命令的使用</h4><h3 id="ulimit-命令简介"><a href="#ulimit-命令简介" class="headerlink" title="ulimit 命令简介"></a>ulimit 命令简介</h3><p>Linux对于每个用户，系统限制其最大进程数。为提高性能，可以根据设备资源情况，设置各linux 用户的最大进程数。<br>可以用ulimit -a 来显示当前的各种用户进程限制。<br>core file size          (blocks, -c) 0<br>data seg size           (kbytes, -d) unlimited<br>scheduling priority             (-e) 0<br>file size               (blocks, -f) unlimited<br>pending signals                 (-i) 127768<br>max locked memory       (kbytes, -l) 64<br>max memory size         (kbytes, -m) unlimited<br>open files                      (-n) 1024<br>pipe size            (512 bytes, -p) 8<br>POSIX message queues     (bytes, -q) 819200<br>real-time priority              (-r) 0<br>stack size              (kbytes, -s) 8192<br>cpu time               (seconds, -t) unlimited<br>max user processes              (-u) 127768<br>virtual memory          (kbytes, -v) unlimited<br>file locks                      (-x) unlimited</p>
-<h2 id="参数描述"><a href="#参数描述" class="headerlink" title="参数描述"></a>参数描述</h2><p>ulimited 不限制用户可以使用的资源，但本设置对可打开的最大文件数（max open files）<br>和可同时运行的最大进程数（max user processes）无效<br>-a 列出所有当前资源极限<br>-c 设置core文件的最大值.单位:blocks<br>-d 设置一个进程的数据段的最大值.单位:kbytes<br>-f Shell 创建文件的文件大小的最大值，单位：blocks<br>-h 指定设置某个给定资源的硬极限。如果用户拥有 root 用户权限，可以增大硬极限。任何用户均可减少硬极限<br>-l 可以锁住的物理内存的最大值<br>-m 可以使用的常驻内存的最大值,单位：kbytes<br>-n 每个进程可以同时打开的最大文件数<br>-p 设置管道的最大值，单位为block，1block&#x3D;512bytes<br>-s 指定堆栈的最大值：单位：kbytes<br>-S 指定为给定的资源设置软极限。软极限可增大到硬极限的值。如果 -H 和 -S 标志均未指定，极限适用于以上二者<br>-t 指定每个进程所使用的秒数,单位：seconds<br>-u 可以运行的最大并发进程数<br>-v Shell可使用的最大的虚拟内存，单位：kbytes</p>
-<h3 id="ulimit-命令参数设置"><a href="#ulimit-命令参数设置" class="headerlink" title="ulimit 命令参数设置"></a>ulimit 命令参数设置</h3><p>对于需要做许多 socket 连接并使它们处于打开状态的 Java 应用程序而言，<br>最好通过使用 ulimit -n xx 修改每个进程可打开的文件数，缺省值是 1024。<br>ulimit -n 4096 将每个进程可以打开的文件数目加大到4096，缺省为1024<br>其他建议设置成无限制（unlimited）的一些重要设置是：<br>数据段长度：ulimit -d unlimited<br>最大内存大小：ulimit -m unlimited<br>堆栈大小：ulimit -s unlimited<br>CPU 时间：ulimit -t unlimited<br>虚拟内存：ulimit -v unlimited</p>
-<h3 id="比较常用的使用案例"><a href="#比较常用的使用案例" class="headerlink" title="比较常用的使用案例"></a>比较常用的使用案例</h3><h2 id="解除-Linux-系统的最大进程数和最大文件打开数限制"><a href="#解除-Linux-系统的最大进程数和最大文件打开数限制" class="headerlink" title="解除 Linux 系统的最大进程数和最大文件打开数限制"></a>解除 Linux 系统的最大进程数和最大文件打开数限制</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/security/limits.conf</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">添加如下的行</span></span><br><span class="line">* soft noproc 11000</span><br><span class="line">* hard noproc 11000</span><br><span class="line">* soft nofile 4100</span><br><span class="line">* hard nofile 4100</span><br></pre></td></tr></table></figure>
-<p>说明：* 代表针对所有用户，noproc 是代表最大进程数，nofile 是代表最大文件打开数</p>
-<h2 id="让-SSH-接受-Login-程式的登入，方便在-ssh-客户端查看-ulimit-a-资源限制"><a href="#让-SSH-接受-Login-程式的登入，方便在-ssh-客户端查看-ulimit-a-资源限制" class="headerlink" title="让 SSH 接受 Login 程式的登入，方便在 ssh 客户端查看 ulimit -a 资源限制"></a>让 SSH 接受 Login 程式的登入，方便在 ssh 客户端查看 ulimit -a 资源限制</h2><p>a、vi &#x2F;etc&#x2F;ssh&#x2F;sshd_config<br>把 UserLogin 的值改为 yes，并把 # 注释去掉<br>b、重启 sshd 服务：<br>&#x2F;etc&#x2F;init.d&#x2F;sshd restart</p>
-<h2 id="修改所有-linux-用户的环境变量文件"><a href="#修改所有-linux-用户的环境变量文件" class="headerlink" title="修改所有 linux 用户的环境变量文件"></a>修改所有 linux 用户的环境变量文件</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> vi /etc/profile</span><br><span class="line">ulimit -u 10000</span><br><span class="line">ulimit -n 4096</span><br><span class="line">ulimit -d unlimited</span><br><span class="line">ulimit -m unlimited</span><br><span class="line">ulimit -s unlimited</span><br><span class="line">ulimit -t unlimited</span><br><span class="line">ulimit -v unlimited</span><br></pre></td></tr></table></figure>
-<p>保存后运行#source &#x2F;etc&#x2F;profile 使其生效</p>
-<h2 id="查看Linuxz系统级最大打开文件数限制"><a href="#查看Linuxz系统级最大打开文件数限制" class="headerlink" title="查看Linuxz系统级最大打开文件数限制"></a>查看Linuxz系统级最大打开文件数限制</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
-<p>修改该值</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">echo 22158 &gt; /proc/sys/fs/file-max</span><br></pre></td></tr></table></figure>
-
-<h2 id="修改网络内内核TCP连接的相关限制"><a href="#修改网络内内核TCP连接的相关限制" class="headerlink" title="修改网络内内核TCP连接的相关限制"></a>修改网络内内核TCP连接的相关限制</h2><h1 id="第一步-修改-etc-sysctl-conf文件"><a href="#第一步-修改-etc-sysctl-conf文件" class="headerlink" title="第一步:修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第一步:修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_local_port_range &#x3D; 1024 65000<br>表示将本地端口范围设置在1024-65000之间<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明新的本地端口范围设置成功。理论上单独一个进程可以同时建立60000多个TCP客户端连接。</p>
-<h1 id="第二步-修改-etc-sysctl-conf文件"><a href="#第二步-修改-etc-sysctl-conf文件" class="headerlink" title="第二步: 修改&#x2F;etc&#x2F;sysctl.conf文件"></a>第二步: 修改&#x2F;etc&#x2F;sysctl.conf文件</h1><p>在文件中添加如下行：<br>net.ipv4.ip_conntrack_max &#x3D; 10240<br>这表明将系统最大跟踪的TCP连接数限制设置为10240，不过此值要尽量小，节省内核内存的占用。<br>接着执行<br>sysctl -p<br>如果系统没有错误提示，就表明系统最大跟踪的TCP连接数限制修改成功。理论上单独一个进程可以同时建立10000多个TCP客户端连接。</p>
-<h4 id="三、修改用户名密码"><a href="#三、修改用户名密码" class="headerlink" title="三、修改用户名密码"></a>三、修改用户名密码</h4><p>Linux修改密码用 passwd 命令，用root用户运行passwd ，passwd user_name可以设置或修改任何用户的密码，普通用户运行passwd只能修改它自己的密码。</p>
-<h4 id="四、linux添加用户名"><a href="#四、linux添加用户名" class="headerlink" title="四、linux添加用户名"></a>四、linux添加用户名</h4><h3 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h3><p>添加用户名  useradd -m sftpuser<br>修改密码  passwd sftpuser<br>添加用户组  groupadd xjtuse<br>添加用户到用户组  usermod -a -G xjtuse sftpuser<br>查看用户信息  id sftpuser<br>也可快速添加用户组<br>useradd -g xjtuse sftpuser<br>修改目录权限：</p>
-<h3 id="修改权限"><a href="#修改权限" class="headerlink" title="修改权限"></a>修改权限</h3><p>chgrp： 命令用于改变文件或目录的所属组。<br>chown： 命令用于改变某个文件或目录的所有者和所属的组， 该命令可以向某个用户授权， 使该用户变成指定文件的所有者或者改变文件所属的组。<br>chmod： 命令用于改变某个文件或目录的所有者和所属的组， 该命令可以向某个用户授权， 使该用户变成指定文件的所有者或者改变文件所属的组。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">chgrp -R user_name /home/user_name</span><br><span class="line">chown -R user_name /home/user_name</span><br><span class="line">chmod -R 0750 /home/user_name</span><br><span class="line">chmod -R 0644 /home/user_name/.bashrc</span><br></pre></td></tr></table></figure>
-
-<p>给文件授予任何人全部权限为： chmod -R 777  filename</p>
-<p>chmod命令是linux上用于改变权限的命令，-R 是递归遍历子目录，因为你要操作的文件使用的*通配符。777，第一个7代表文件所属者的权限，第二个7代表文件所属者所在组的权限，第三个7代表其它用户的权限，7&#x3D;4+2+1，在linux中权限是可以通过数字来描述的。具体表示如下：<br>4是读的权限，2是写的权限，1是执行的权限，7就是所有权限。</p>
-<p>添加 sudo 权限</p>
-<p>使用 visudo 命令编辑 &#x2F;etc&#x2F;sudoers 文件<br>在文件下面添加用户<br>username ALL&#x3D;(ALL:ALL) ALL<br>注意： sudo 权限具有较高的操作空间，一般用户尽量不要给 sudo 权限</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2023/09/20/Linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E4%BD%BF%E7%94%A8%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1354,11 +1399,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1370,19 +1419,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">taier</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1390,7 +1431,15 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">常见问题处理</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">taier</a>
               </li>
             
             <div class="clearfix"></div>
