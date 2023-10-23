@@ -18,7 +18,7 @@
 <meta property="og:description" content="一、Taier框架常见问题处理1.数据同步问题失败现象：执行数据同步失败报错日志： 12345678910111213142023-10-10 10:56:09.063 [sync_default_default_batch_FlinkYarnSession2-RdbJobExecutor] ERROR com.dtstack.taier.scheduler.jobdealer.JobDealer">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-10-10T02:48:18.000Z">
-<meta property="article:modified_time" content="2023-10-10T02:59:58.742Z">
+<meta property="article:modified_time" content="2023-10-20T01:32:37.422Z">
 <meta property="article:author" content="柯 峰">
 <meta property="article:tag" content="taier">
 <meta name="twitter:card" content="summary">
@@ -235,7 +235,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">228字</span>
+      <span class="post-count">1.4k字</span>
     </span>
   </span>
 
@@ -244,7 +244,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -259,6 +259,18 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2023</span>-<span class="number">10</span>-<span class="number">10</span> <span class="number">10</span>:<span class="number">56</span>:<span class="number">09.063</span> [sync_default_default_batch_FlinkYarnSession2-RdbJobExecutor] ERROR com.dtstack.taier.scheduler.jobdealer.JobDealer [JobDealer.java:<span class="number">276</span>] - getAndUpdateEngineLog error jobId:4mmso2eumsv0 error:.</span><br><span class="line">com.dtstack.taier.common.exception.TaierDefineException: Flink Corresponding mode [SESSION] no information is configured</span><br><span class="line">        at com.dtstack.taier.scheduler.server.pluginInfo.FlinkPluginInfoStrategy.convertPluginInfo(FlinkPluginInfoStrategy.java:<span class="number">48</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.server.pluginInfo.KerberosPluginInfo.configSecurity(KerberosPluginInfo.java:<span class="number">57</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.service.ClusterService.pluginInfoJSON(ClusterService.java:<span class="number">94</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.PluginWrapper.wrapperPluginInfo(PluginWrapper.java:<span class="number">75</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator.getPluginInfo(WorkerOperator.java:<span class="number">79</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator.getEngineLog(WorkerOperator.java:<span class="number">110</span>)</span><br><span class="line">        at com.dtstack.taier.scheduler.WorkerOperator$$FastClassBySpringCGLIB$$b285a6bd.invoke(&lt;generated&gt;)</span><br><span class="line">        at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:<span class="number">218</span>)</span><br><span class="line">        at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:<span class="number">769</span>)</span><br><span class="line">        at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:<span class="number">163</span>)</span><br><span class="line">        at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:<span class="number">747</span>)</span><br><span class="line">        at org.springframework.aop.framework.adapter.AfterReturningAdviceInterceptor.invoke(AfterReturningAdviceInterceptor.java:<span class="number">55</span>)</span><br></pre></td></tr></table></figure>
 <h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>  任务配置flink的模式有问题</p>
 <h2 id="解决方案："><a href="#解决方案：" class="headerlink" title="解决方案："></a>解决方案：</h2><p>在任务属性中配置：<br>flinkTaskRunMode&#x3D;standalone</p>
+<h3 id="2-数据同步问题失败-The-dirty-consumer-shutdown"><a href="#2-数据同步问题失败-The-dirty-consumer-shutdown" class="headerlink" title="2.数据同步问题失败 The dirty consumer shutdown"></a>2.数据同步问题失败 The dirty consumer shutdown</h3><h2 id="现象：执行数据同步失败-1"><a href="#现象：执行数据同步失败-1" class="headerlink" title="现象：执行数据同步失败"></a>现象：执行数据同步失败</h2><p>报错日志：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">com.dtstack.chunjun.throwable.NoRestartException: The dirty consumer shutdown, due to the consumed count exceed the max-consumed [<span class="number">0</span>]</span><br><span class="line">	at com.dtstack.chunjun.dirty.consumer.DirtyDataCollector.addConsumed(DirtyDataCollector.java:<span class="number">105</span>)</span><br><span class="line">	at com.dtstack.chunjun.dirty.consumer.DirtyDataCollector.offer(DirtyDataCollector.java:<span class="number">79</span>)</span><br><span class="line">	at com.dtstack.chunjun.dirty.manager.DirtyManager.collect(DirtyManager.java:<span class="number">140</span>)</span><br><span class="line">	at com.dtstack.chunjun.sink.format.BaseRichOutputFormat.writeSingleRecord(BaseRichOutputFormat.java:<span class="number">482</span>)</span><br><span class="line">	at com.dtstack.chunjun.sink.format.BaseRichOutputFormat.writeRecord(BaseRichOutputFormat.java:<span class="number">285</span>)</span><br><span class="line">	at com.dtstack.chunjun.sink.format.BaseRichOutputFormat.writeRecord(BaseRichOutputFormat.java:<span class="number">89</span>)</span><br><span class="line">	at com.dtstack.chunjun.sink.DtOutputFormatSinkFunction.invoke(DtOutputFormatSinkFunction.java:<span class="number">117</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSink.processElement(StreamSink.java:<span class="number">54</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.CopyingChainingOutput.pushToOperator(CopyingChainingOutput.java:<span class="number">71</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.CopyingChainingOutput.collect(CopyingChainingOutput.java:<span class="number">46</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.CopyingChainingOutput.collect(CopyingChainingOutput.java:<span class="number">26</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.CountingOutput.collect(CountingOutput.java:<span class="number">50</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.CountingOutput.collect(CountingOutput.java:<span class="number">28</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSourceContexts$ManualWatermarkContext.processAndCollect(StreamSourceContexts.java:<span class="number">317</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSourceContexts$WatermarkContext.collect(StreamSourceContexts.java:<span class="number">411</span>)</span><br><span class="line">	at com.dtstack.chunjun.source.DtInputFormatSourceFunction.run(DtInputFormatSourceFunction.java:<span class="number">135</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSource.run(StreamSource.java:<span class="number">110</span>)</span><br><span class="line">	at org.apache.flink.streaming.api.operators.StreamSource.run(StreamSource.java:<span class="number">66</span>)</span><br><span class="line">	at org.apache.flink.streaming.runtime.tasks.SourceStreamTask$LegacySourceFunctionThread.run(SourceStreamTask.java:<span class="number">267</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="原因-1"><a href="#原因-1" class="headerlink" title="原因"></a>原因</h2><p>  根据同事的提醒，配置了脏数据记录。然后在运行，直接成功了。最后发现还是有少部分数据没有同步过来，因为我们这源表是mysql，目标表是doris，有可能是数据库差异导致的。<br>  然后随意查询脏数据1条，组装成可以插入到目标表的数据：<br>  insert into ods_wysb_sr_order values(‘753663249815314438’,’753663249815314438’,null,’1073468817017016320’,’0’,’0’,’19楼，女洗手间需要安装闭门器。’,’1210275281’,’总部大厦B区&#x2F;客户区域&#x2F;B区19层&#x2F;B区19层’,’1’,’SR_STAFF’,’1169900526905724928’,’罗凤莹’,’1909江西省人民政府驻深圳办事处’,null,’APP’,’6433237509223356’,’1909江西省人民政府驻深圳办事处’,null,null,null,’CLOSED’,’SR’,null,null,’750309574199877711’,’2’,’0’,’无设备’,null,null,null,’2022-09-2917:01:14’,’2022-09-2917:10:56’,’2022-09-2917:12:04’,’2022-09-2917:12:04’,’0’,’0’,null,null,’0’,’0’,’0’,’0’,null,’1146961989965320192’,’1146968888030924800’,’13714858695’,’0’,’0’,’1073099901879062528’,’0’,null,’9.70’,null,null,’2022-09-2917:10:56’,null,null,’0.00’,’9.70’,null,null,’0.00’,’10.84’,null,null,null,’0’,’0’,null,null,null,null,’0.02’,’0.02’,null,null,’0.00’,null,null,null,’1’,null,’0’,’’,’0’,’’,’0’,’’,’’,null,null,’6’,null,’5.0’,null,null,null,’1146968888030924800’,’0’,’2022-10-0915:03:27’,null,’1’,null,null,null,null,’0.01’,’0.01’,null,’0’,’2022-09-2917:01:14’,null,null,null,null,’0’,’0’,’0’,’0’,null,null,null,null,null,null,null,null,null,null,null,’1169900526905724928’,’2022-10-0915:03:27’,null,’1169900526905724928’,’2022-09-2917:01:14’,’1’,’1’);<br>  最后直接拿去doris执行，发现失败了。</p>
+<p>  报了这个错</p>
+<blockquote>
+<p>5025 - Insert has filtered data in strict mode, tracking_url&#x3D;<a target="_blank" rel="noopener" href="http://10.66.221.148:8040/api/_load_error_log?file=__shard_886/error_log_insert_stmt_2c8945c047f34592-a782bb32af110e97_2c8945c047f34592_a782bb32af110e97">http://10.66.221.148:8040/api/_load_error_log?file=__shard_886/error_log_insert_stmt_2c8945c047f34592-a782bb32af110e97_2c8945c047f34592_a782bb32af110e97</a></p>
+</blockquote>
+<p> Reason: column_name[contact_person], the length of input is too long than schema. first 32 bytes of input str: [1909江西省人民政府驻深䛠schema length: 30; actual length: 43; . src line []; </p>
+<p> 得出contact_person 字段长度太短，导致数据不能插入。接着修改contact_person 字段的长度。然后重新运行任务，最终成功。<br> alter table ods_wysb_sr_order  modify column  <code>contact_person</code> varchar(100) NULL COMMENT ‘联系人 ‘; </p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>  所以只要修改目标表的字段长度保持与原表一致，那问题就可以得到解决。当前脏数据的产生，还有其他请情况的原因。所以只能根据不同的例子不同的分析。最后发现了另一个方法，如果目标表是doris数据库，可以通过doris的web页面访问，查看错误日志。</p>
+<h3 id="3-数据同步显示运行成功，但是没有插入数据。"><a href="#3-数据同步显示运行成功，但是没有插入数据。" class="headerlink" title="3.数据同步显示运行成功，但是没有插入数据。"></a>3.数据同步显示运行成功，但是没有插入数据。</h3><h2 id="原因-2"><a href="#原因-2" class="headerlink" title="原因"></a>原因</h2><p>  拿到原数据在本地环境调试，发现在获取数据时，如果为bit类型的数据，通过jdbc获取的值为true.由于同步的表结构也是用bit，但是在同步的处理过程中，获取数据时，会将true转换为字符串<br>  导致数据无法插入到目标表中。</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>  通过mysql官网查询到 tinyint 类型的说明，已经对坑进行了补充说明。<br>  java.lang.Boolean if the configuration property tinyInt1isBit is set to true (the default) and the storage size is 1, or java.lang.Integer if not.<br>  inyInt (1) 只用来代表 Boolean 含义的字段，且 0 代表 False，1 代表 True。如果要存储多个数值，则定义为 tinyInt (N), N&gt;1。例如 tinyInt (2)<br>  bit 也时相当于tinyint(1)。JDBC 的 URL 增加 tinyInt1isBit&#x3D;false 参数，注意参数名区分大小写，否则不生效。<br>  虽然可以改字段类型长度，但是由于我们的表是其他系统提供的，我们不能改动。所以对于我们，在jdbc url后面添加tinyInt1isBit&#x3D;false 参数最好。最终问题得到解决。</p>
 
     
 
@@ -570,11 +582,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Docker</a>
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -582,7 +594,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -602,11 +614,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
+                <a href="javascript:void(0)" class="js-tag color5">java</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">java</a>
+                <a href="javascript:void(0)" class="js-tag color1">正则表达式</a>
               </li>
             
             <div class="clearfix"></div>
